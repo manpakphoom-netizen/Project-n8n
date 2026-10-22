@@ -1,0 +1,3112 @@
+{
+  "name": "ข่าวรายวัน 2 line",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "line-news",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -4720,
+        1760
+      ],
+      "id": "49edaa98-7443-4151-a2dd-e9595235e117",
+      "name": "Webhook",
+      "webhookId": "70911125-33d8-4a91-bb98-b5a716b2f467"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "4a19e700-101c-4c2e-b55a-e4c09ef23655",
+                    "leftValue": "={{ $json.body.events[0].message.text }}",
+                    "rightValue": "การเมือง",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "ข่าวการเมือง"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "e4c990e9-7d17-46df-b34d-3a24bd339636",
+                    "leftValue": "={{ $json.body.events[0].message.text }}",
+                    "rightValue": "เศรษฐกิจ",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "ข่าวเศรษฐกิจ"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "4077460a-6b6e-4110-a782-98bbd37b2464",
+                    "leftValue": "={{ $json.body.events[0].message.text }}",
+                    "rightValue": "เทคโนโลยี",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "ข่าวเทคโนโลยี "
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        -4128,
+        1728
+      ],
+      "id": "9b4c7cce-137f-4981-a0c1-763756404fae",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "url": "https://www.matichon.co.th/politics/feed",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        -3904,
+        1584
+      ],
+      "id": "16e19115-fedb-47e7-8b28-d972808a3067",
+      "name": "มติชน1",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://www.khaosod.co.th/politics/feed",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        -3904,
+        1600
+      ],
+      "id": "0d33d6cb-8155-4d9a-bd15-18a7415ccb4e",
+      "name": "ข่าวสด1",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://th.investing.com/rss/news_14.rss",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        -3904,
+        1744
+      ],
+      "id": "5539d189-6c49-45a6-8040-1eb091a27c23",
+      "name": "investing",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://news.google.com/rss/headlines/section/topic/BUSINESS?hl=th&gl=TH&ceid=TH:th",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        -3904,
+        1744
+      ],
+      "id": "4a4da3e2-be1a-46b9-84bf-b519ecf2f9c7",
+      "name": "Google News",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://www.ft.com/markets?format=rss",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        -3904,
+        1744
+      ],
+      "id": "78c267f0-1149-4147-b34d-d34d7db97b6b",
+      "name": "prachachat",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://www.blognone.com/atom.xml",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        -3888,
+        1936
+      ],
+      "id": "29ddbab9-2114-47a9-b834-6d33256f0b3c",
+      "name": "blognone",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://techsauce.co/feed",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        -3888,
+        1952
+      ],
+      "id": "6feedd78-3059-4846-a836-40c0126fa254",
+      "name": "techsauce",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://news.google.com/rss/headlines/section/topic/TECHNOLOGY?hl=th&gl=TH&ceid=TH:th",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        -3888,
+        1952
+      ],
+      "id": "2ea73ed3-9672-48a1-937d-68c05e7c3195",
+      "name": "google",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -3696,
+        1584
+      ],
+      "id": "456afdbd-708a-4769-bf09-03d3e8d72e1f",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -3680,
+        1744
+      ],
+      "id": "f510373e-cacd-444c-81d8-ffa2bf2978a3",
+      "name": "Merge2"
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -3680,
+        1936
+      ],
+      "id": "ce0703c2-8b1b-49ef-853c-4b0d5a7d7294",
+      "name": "Merge3"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "fc84b9f6-57fb-492f-9a19-8901547d77c3",
+              "leftValue": "={{ ($json.isoDate || $json.pubDate).toDateTime() }}",
+              "rightValue": "={{ $now.minus({hours: 12}) }}",
+              "operator": {
+                "type": "dateTime",
+                "operation": "afterOrEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -3376,
+        1760
+      ],
+      "id": "120d6365-331a-4b8a-b94a-e4ea66e915d9",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=ต่อไปนี้คือรายการข่าวจากหลายแหล่งประจำวันนี้ โดยข้อมูลแต่ละข่าวจะประกอบด้วย title, image_url และ link \n\nงานของคุณคือ:\n1. วิเคราะห์และคัดกรองเนื้อหาข่าวทั้งหมดที่ได้รับ\n2. คัดเลือกข่าวที่น่าสนใจที่สุดจำนวน 3 ข่าว (หรือ 3-5 ข่าวตามความสำคัญ)\n3. จัดหมวดหมู่ข่าวแต่ละข่าวให้อยู่ใน 1 จาก 3 หมวดหมู่นี้เท่านั้น:\n   - การเมือง\n   - เศรษฐกิจ\n   - เทคโนโลยี\n4. สรุปประเด็นเนื้อหาของแต่ละข่าวให้กระชับและได้ใจความ เหมาะสำหรับอ่านผ่าน LINE \n5. วิเคราะห์ภาพรวมประจำวัน (executive_summary) และ\n6. วิเคราะห์ข้อเสนอแนะเชิงกลยุทธ์เพื่อสนับสนุนการตัดสินใจทางธุรกิจ (decision_summary)\n7. ส่งผลลัพธ์เป็นโครงสร้าง JSON ตามข้อกำหนดที่ระบุไว้ใน System Prompt อย่างเคร่งครัด\n\nรายการข่าว:\n---\n{{\n  $json.data \n    ? $json.data.map(d => `title: ${d.title}\\nimage_url: ${d.enclosure?.url ?? ''}\\nlink: ${d.link}`).join('\\n\\n')\n    : `title: ${$json.title}\\nimage_url: ${$json.enclosure?.url ?? ''}\\nlink: ${$json.link}`\n}}\n---\n\n⚠️ รายการข่าวที่เคยส่งไปแล้วล่าสุด (ห้ามเลือกซ้ำเด็ดขาด):\n{{ $('Get row(s) in sheet1').all().map(r => r.json.title || r.json.Title || r.json.Source_URLs).filter(Boolean).slice(-15).join('\\n') || 'ไม่มีประวัติข่าวซ้ำ' }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=คุณคือ \"AI Business News Daily Analyst\" ผู้เชี่ยวชาญด้านการวิเคราะห์และสรุปข่าวสารธุรกิจ\n\nหน้าที่ของคุณ:\nวิเคราะห์ สังเคราะห์ และสรุปข่าวสารให้ออกมาเป็นโครงสร้างข้อมูล JSON ที่ถูกต้องและสมบูรณ์เท่านั้น ห้ามตอบเป็นข้อความธรรมดา ห้ามใส่คำทักทายหรือเกริ่นนำ และห้ามใช้ Markdown formatting ใดๆ นอกเหนือจาก JSON\n\nกฎการประมวลผลและการตอบกลับ:\n1. คัดเลือกข่าวที่สำคัญที่สุดจำนวน 5 ข่าว โดยจัดหมวดหมู่เป็น: การเมือง | เศรษฐกิจ | เทคโนโลยี\n2. หากมีหลายสำนักรายงานเหตุการณ์เดียวกัน ให้สังเคราะห์เป็นข่าวเดียว\n3. ใช้โทนภาษาที่เป็นกลาง สุภาพ เน้นข้อเท็จจริง ตัวเลข นโยบาย และผลกระทบต่อธุรกิจโดยตรง\n4. สำหรับฟิลด์สรุปต่อท้าย (decision_summary) ให้วิเคราะห์ข้อเสนอแนะเชิงกลยุทธ์ การบริหารต้นทุน โอกาสทางธุรกิจ หรือความเสี่ยงที่ผู้บริหารควรเตรียมรับมือ ความยาว 2-3 ประโยค\n\nรูปแบบผลลัพธ์ที่ต้องส่งกลับ (Strict JSON Output):\n{\n  \"executive_summary\": \"สรุปประเด็นสำคัญและทิศทางภาพรวมข่าวสารในรอบวัน 1-2 ประโยค\",\n  \"news\": [\n    {\n      \"title\": \"หัวข้อข่าวที่ 1 (สั้น กระชับ ได้ใจความ)\",\n      \"date\": \"YYYY-MM-DD\",\n      \"category\": \"การเมือง / เศรษฐกิจ / เทคโนโลยี\",\n      \"summary\": \"เนื้อหาสำคัญและผลกระทบเชิงธุรกิจ 2-3 ประโยค\",\n      \"reference_url\": \"URL ข่าวต้นฉบับ\"\n    },\n    {\n      \"title\": \"หัวข้อข่าวที่ 2\",\n      \"date\": \"YYYY-MM-DD\",\n      \"category\": \"การเมือง / เศรษฐกิจ / เทคโนโลยี\",\n      \"summary\": \"เนื้อหาสำคัญและผลกระทบเชิงธุรกิจ 2-3 ประโยค\",\n      \"reference_url\": \"URL ข่าวต้นฉบับ\"\n    },\n    {\n      \"title\": \"หัวข้อข่าวที่ 3\",\n      \"date\": \"YYYY-MM-DD\",\n      \"category\": \"การเมือง / เศรษฐกิจ / เทคโนโลยี\",\n      \"summary\": \"เนื้อหาสำคัญและผลกระทบเชิงธุรกิจ 2-3 ประโยค\",\n      \"reference_url\": \"URL ข่าวต้นฉบับ\"\n    },\n\"decision_summary\": \"สรุปสารสนเทศเพื่อสนับสนุนการตัดสินใจทางธุรกิจ ข้อเสนอแนะเชิงกลยุทธ์ การบริหารต้นทุน หรือความเสี่ยงสำคัญ 2-3 ประโยค\"\n  ],\n}",
+          "maxIterations": 5
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -2336,
+        1744
+      ],
+      "id": "b9309b8c-d627-4b3c-a87d-e4debea18fd0",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "query": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Query', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "@tavily/n8n-nodes-tavily.tavilyTool",
+      "typeVersion": 1,
+      "position": [
+        -2208,
+        1968
+      ],
+      "id": "17c85a13-9481-4abf-9288-c31d113a9c82",
+      "name": "Search in Tavily1",
+      "credentials": {
+        "tavilyApi": {
+          "id": "JXuA4GpJqMnZ2eUw",
+          "name": "Tavily account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -2336,
+        2096
+      ],
+      "id": "69525bd6-0976-479a-91cf-db9075b8f41f",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "ORkT4YTg02xMUphE",
+          "name": "OpenAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"executive_summary\": \"สรุปภาพรวมข่าวสำคัญของวันนี้\",\n  \"news\": [\n    {\n      \"title\": \"ชื่อข่าวที่ 1\",\n      \"date\": \"21 กรกฎาคม 2569\",\n      \"category\": \"เศรษฐกิจ\",\n      \"summary\": \"สรุปข่าวโดยย่อ\",\n      \"image_url\": \"\",\n      \"reference_url\": \"https://example.com/news1\"\n    },\n    {\n      \"title\": \"ชื่อข่าวที่ 2\",\n      \"date\": \"21 กรกฎาคม 2569\",\n      \"category\": \"การเมือง\",\n      \"summary\": \"สรุปข่าวโดยย่อ\",\n      \"image_url\": \"\",\n      \"reference_url\": \"https://example.com/news2\"\n    },\n    {\n      \"title\": \"ชื่อข่าวที่ 3\",\n      \"date\": \"21 กรกฎาคม 2569\",\n      \"category\": \"เทคโนโลยี\",\n      \"summary\": \"สรุปข่าวโดยย่อ\",\n      \"image_url\": \"\",\n      \"reference_url\": \"https://example.com/news3\"\n    },\n    {\n      \"title\": \"ชื่อข่าวที่ 2\",\n      \"date\": \"21 กรกฎาคม 2569\",\n      \"category\": \"การเมือง\",\n      \"summary\": \"สรุปข่าวโดยย่อ\",\n      \"image_url\": \"\",\n      \"reference_url\": \"https://example.com/news2\"\n    },\n    {\n      \"title\": \"ชื่อข่าวที่ 3\",\n      \"date\": \"21 กรกฎาคม 2569\",\n      \"category\": \"เทคโนโลยี\",\n      \"summary\": \"สรุปข่าวโดยย่อ\",\n      \"image_url\": \"\",\n      \"reference_url\": \"https://example.com/news3\"\n    }\n  ],\n  \"decision_summary\": \"สรุปสารสนเทศเพื่อสนับสนุนการตัดสินใจทางธุรกิจ ข้อเสนอแนะเชิงกลยุทธ์ การบริหารต้นทุน หรือความเสี่ยงสำคัญ\"\n}",
+        "autoFix": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        -2080,
+        1968
+      ],
+      "id": "1f2e4b4c-d182-4b97-b61e-686448fa5ab6",
+      "name": "Structured Output Parser1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.line.me/v2/bot/message/reply",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 05K6MoubB4aakDLkFIgSwS2Fh5rESAR5Mb+NqL5D6dQddh/fyAB+yrHzMhV9tW1cFjLuWUKwSV2KHObb0JNXl2onGtYJdI8o0+ALLm8+Yxb7Qpyjej7IxkZPtzCLVBvwu9XTQohMpNLWyLQYXKCfZwdB04t89/1O/w1cDnyilFU="
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "=json",
+        "specifyBody": "json",
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "jsonBody": "={{\n(() => {\n  // ดึงข้อมูลจาก AI Agent\n  let data = $json.output;\n\n  // แปลง String เป็น Object กรณี AI ส่งผลลัพธ์เป็น JSON String\n  if (typeof data === 'string') {\n    try {\n      data = JSON.parse(data);\n    } catch (e) {\n      data = {};\n    }\n  }\n\n  if (data && data.output && typeof data.output === 'object') {\n    data = data.output;\n  }\n\n  // ดึงค่าภาพรวม ข่าวสาร และบทสรุปเชิงธุรกิจจาก AI โดยตรง\n  const overview = data?.overview || data?.executive_summary || \"ภาพรวมข่าวสารสำคัญในรอบวัน\";\n  const newsList = Array.isArray(data?.news) ? data.news : (Array.isArray(data?.topics) ? data.topics : []);\n  const decisionSummary = data?.decision_summary || data?.business_impact || data?.business_decision_summary || null;\n\n  const userQuery = $('Webhook').item?.json?.body?.events?.[0]?.message?.text || \"ข่าวประจำวัน\";\n  const token = $('Webhook').item?.json?.body?.events?.[0]?.replyToken || \"\";\n\n  // ประกอบกล่องเนื้อหา Body\n  const bodyContents = [\n    {\n      type: \"box\",\n      layout: \"vertical\",\n      backgroundColor: \"#F1F5F9\",\n      paddingAll: \"md\",\n      cornerRadius: \"md\",\n      contents: [\n        {\n          type: \"text\",\n          text: \"🔹 ภาพรวมประจำวัน\",\n          weight: \"bold\",\n          size: \"xs\",\n          color: \"#334155\"\n        },\n        {\n          type: \"text\",\n          text: overview,\n          size: \"xs\",\n          color: \"#475569\",\n          wrap: true,\n          margin: \"xs\"\n        }\n      ]\n    },\n    {\n      type: \"separator\"\n    },\n    ...newsList.slice(0, 3).map((item, index) => {\n      return {\n        type: \"box\",\n        layout: \"vertical\",\n        spacing: \"xs\",\n        margin: \"sm\",\n        contents: [\n          {\n            type: \"text\",\n            text: `${index + 1}. ${item.title || 'หัวข้อข่าว'}`,\n            weight: \"bold\",\n            size: \"sm\",\n            color: \"#0F172A\",\n            wrap: true\n          },\n          {\n            type: \"text\",\n            text: item.summary || item.description || \"ไม่มีเนื้อหาโดยย่อ\",\n            size: \"xs\",\n            color: \"#64748B\",\n            wrap: true\n          },\n          {\n            type: \"button\",\n            style: \"link\",\n            height: \"sm\",\n            action: {\n              type: \"uri\",\n              label: \"🔗 อ่านต่อฉบับเต็ม\",\n              uri: (item.link || item.reference_url || \"https://news.google.com\").substring(0, 990)\n            }\n          }\n        ]\n      };\n    })\n  ];\n\n  // ถ้า AI ส่ง decision_summary มา ให้ต่อกล่องสีฟ้าท้ายการ์ด\n  if (decisionSummary) {\n    bodyContents.push(\n      {\n        type: \"separator\",\n        margin: \"md\"\n      },\n      {\n        type: \"box\",\n        layout: \"vertical\",\n        backgroundColor: \"#EFF6FF\",\n        paddingAll: \"md\",\n        cornerRadius: \"md\",\n        margin: \"sm\",\n        contents: [\n          {\n            type: \"text\",\n            text: \"💡 สรุปเพื่อสนับสนุนการตัดสินใจทางธุรกิจ\",\n            weight: \"bold\",\n            size: \"xs\",\n            color: \"#1D4ED8\"\n          },\n          {\n            type: \"text\",\n            text: decisionSummary,\n            size: \"xs\",\n            color: \"#1E293B\",\n            wrap: true,\n            margin: \"xs\"\n          }\n        ]\n      }\n    );\n  }\n\n  return JSON.stringify({\n    replyToken: token,\n    messages: [\n      {\n        type: \"flex\",\n        altText: \"สรุปข่าวสำคัญประจำวัน\",\n        contents: {\n          type: \"bubble\",\n          header: {\n            type: \"box\",\n            layout: \"vertical\",\n            backgroundColor: \"#0F172A\",\n            paddingAll: \"lg\",\n            contents: [\n              {\n                type: \"text\",\n                text: \"📊 DAILY NEWS BRIEF\",\n                weight: \"bold\",\n                color: \"#38BDF8\",\n                size: \"xs\"\n              },\n              {\n                type: \"text\",\n                text: \"สรุป\" + userQuery,\n                weight: \"bold\",\n                color: \"#FFFFFF\",\n                size: \"lg\",\n                margin: \"xs\"\n              }\n            ]\n          },\n          body: {\n            type: \"box\",\n            layout: \"vertical\",\n            spacing: \"md\",\n            contents: bodyContents\n          }\n        }\n      }\n    ]\n  });\n})()\n}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -2000,
+        1744
+      ],
+      "id": "e72c3884-3969-4253-8b09-324ddf65438a",
+      "name": "HTTP Request2"
+    },
+    {
+      "parameters": {
+        "url": "https://news.google.com/rss/headlines/section/topic/POLITICS?hl=th&gl=TH&ceid=TH:th",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        -3904,
+        1584
+      ],
+      "id": "f2251c60-f0fe-4448-b7d2-dadda8ef109c",
+      "name": "google1",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Webhook').first().json.body.events[0].source.userId }}",
+        "contextWindowLength": 2
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -2464,
+        1984
+      ],
+      "id": "a5fb1137-d250-454a-91c5-6bf49b7ca3e5",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "query": "={{ $('Webhook').item.json.body.events[0].message.text }} ข่าวล่าสุด",
+        "options": {
+          "topic": "news",
+          "days": 1
+        }
+      },
+      "type": "@tavily/n8n-nodes-tavily.tavilyTool",
+      "typeVersion": 1,
+      "position": [
+        -3568,
+        2528
+      ],
+      "id": "eefc3a95-648a-4338-b9bd-64355dfe3c31",
+      "name": "Search in Tavily2",
+      "credentials": {
+        "tavilyApi": {
+          "id": "JXuA4GpJqMnZ2eUw",
+          "name": "Tavily account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -3968,
+        2688
+      ],
+      "id": "8febbbac-0b4d-4be6-bcf4-d12c8fed35ac",
+      "name": "OpenAI Chat Model2",
+      "credentials": {
+        "openAiApi": {
+          "id": "ORkT4YTg02xMUphE",
+          "name": "OpenAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"executive_summary\": \"สรุปภาพรวมข่าวสำคัญของวันนี้\",\n  \"news\": [\n    {\n      \"title\": \"ชื่อข่าวที่ 1\",\n      \"date\": \"21 กรกฎาคม 2569\",\n      \"category\": \"เศรษฐกิจ\",\n      \"summary\": \"สรุปข่าวโดยย่อ\",\n      \"image_url\": \"\",\n      \"reference_url\": \"https://example.com/news1\"\n    },\n    {\n      \"title\": \"ชื่อข่าวที่ 2\",\n      \"date\": \"21 กรกฎาคม 2569\",\n      \"category\": \"การเมือง\",\n      \"summary\": \"สรุปข่าวโดยย่อ\",\n      \"image_url\": \"\",\n      \"reference_url\": \"https://example.com/news2\"\n    },\n    {\n      \"title\": \"ชื่อข่าวที่ 3\",\n      \"date\": \"21 กรกฎาคม 2569\",\n      \"category\": \"เทคโนโลยี\",\n      \"summary\": \"สรุปข่าวโดยย่อ\",\n      \"image_url\": \"\",\n      \"reference_url\": \"https://example.com/news3\"\n    },\n    {\n      \"title\": \"ชื่อข่าวที่ 2\",\n      \"date\": \"21 กรกฎาคม 2569\",\n      \"category\": \"การเมือง\",\n      \"summary\": \"สรุปข่าวโดยย่อ\",\n      \"image_url\": \"\",\n      \"reference_url\": \"https://example.com/news2\"\n    },\n    {\n      \"title\": \"ชื่อข่าวที่ 3\",\n      \"date\": \"21 กรกฎาคม 2569\",\n      \"category\": \"เทคโนโลยี\",\n      \"summary\": \"สรุปข่าวโดยย่อ\",\n      \"image_url\": \"\",\n      \"reference_url\": \"https://example.com/news3\"\n    }\n  ]\n}",
+        "autoFix": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        -3552,
+        2720
+      ],
+      "id": "388df9b2-88c1-4a7a-8277-389399231af5",
+      "name": "Structured Output Parser2",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Webhook').first().json.body.events[0].source.userId }}",
+        "contextWindowLength": 2
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -3680,
+        2544
+      ],
+      "id": "03bf44cd-e512-4372-a3c0-30e3cbaabee9",
+      "name": "Simple Memory1"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        -3856,
+        2320
+      ],
+      "id": "0f89cdd7-9943-4e06-bec3-69f8d7da60b2",
+      "name": "Aggregate3"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=ผู้ใช้ต้องการสืบค้นข่าวเกี่ยวกับ: \"{{ $('Webhook').item.json.body.events[0].message.text }}\"\n\n⚠️ รายการข่าวที่เคยส่งไปแล้วล่าสุด (ห้ามเลือกซ้ำ):\n{{ $('Get row(s) in sheet1').all().map(r => r.json.Source_URLs).filter(Boolean).join('\\n').split(',').map(u => u.trim()).filter(Boolean).join('\\n') }}\n---\n\nคำสั่งการทำงาน:\n1. ใช้เครื่องมือสืบค้น (Search Tool: Tavily) ค้นหาข่าวล่าสุดที่ตรงกับหัวข้อที่ผู้ใช้สอบถาม\n2. ตรวจสอบผลการค้นหา: ห้ามเลือกข่าวที่มี URL ตรงกับ หรือมีเนื้อหา/เหตุการณ์เดียวกับ \"รายการข่าวที่เคยส่งไปแล้ว\" ข้างต้นอย่างเด็ดขาด\n3. คัดเลือกเฉพาะข่าวใหม่ที่น่าสนใจที่สุด 3 ข่าว แล้วสรุปประเด็นสาระสำคัญให้กระชับ ชัดเจน พร้อมระบุลิงก์อ้างอิงของแต่ละข่าว\n4. วิเคราะห์ข้อเสนอแนะเชิงกลยุทธ์เพื่อสนับสนุนการตัดสินใจทางธุรกิจ (decision_summary)\n",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=คุณคือ \"AI Business News Daily Analyst\" ผู้เชี่ยวชาญด้านการวิเคราะห์และสรุปข่าวสารธุรกิจ\n\nบทบาทและเป้าหมาย:\nทำหน้าที่สืบค้น วิเคราะห์ และสรุปข่าวสารธุรกิจภาษาไทยที่กระชับ ชัดเจน ตรงไปตรงมา และจัดรูปแบบให้อ่านง่ายบนแอปพลิเคชัน LINE โดยตรง\nคุณคือ AI ผู้ช่วยสรุปข่าวสารเฉพาะกิจ (On-Demand News Analyst)\n\nกฎการทำงานอย่างเคร่งครัด:\n- ตรวจสอบให้แน่ใจว่า JSON ที่ส่งออกมาถูกต้องสมบูรณ์ทุกครั้ง \nโดยเฉพาะการปิด array ด้วย ] ก่อนปิด object ด้วย } เสมอ\n- ตรวจสอบรายการข่าวที่เคยเผยแพร่ไปแล้วเสมอ หากข่าวที่ค้นพบจาก Search Tool มี URL หรือประเด็นซ้ำกับประวัติเดิม ให้คัดทิ้งทันที และเลือกข่าวอื่นที่มีความสดใหม่กว่า\n- หากสืบค้นแล้วพบแต่ข่าวเดิมที่เคยส่งไปแล้ว ให้ค้นหาประเด็นความคืบหน้าล่าสุด (Follow-up News) แทนการรายงานเหตุการณ์เดิม\n---\nกฎการประมวลผลและการตอบกลับ:\n1. การสืบค้นและคัดกรองข่าว (Search & Selection):\n   - ค้นหาข่าวล่าสุดที่เกี่ยวข้องกับข้อความค้นหาของผู้ใช้ โดยคัดเลือกเฉพาะข่าวที่มีอายุไม่เกิน 24 ชั่วโมง\n   - สรุปเฉพาะข่าวที่สำคัญที่สุดจำนวน 3 ข่าว (หากมีหลายสำนักรายงานเหตุการณ์เดียวกัน ให้สังเคราะห์รวมเป็นข่าวเดียว)\n  \n\n2. โทนภาษาและสาระสำคัญ:\n   - ภาษาไทยล้วน สุภาพ เป็นกลาง และเป็นมืออาชีพ\n   - เน้นข้อเท็จจริง ตัวเลข สาระสำคัญ นโยบาย และผลกระทบเชิงธุรกิจ โดยไม่ใส่ความคิดเห็นส่วนตัว\n   - อธิบายสั้นกระชับ เข้าใจง่าย ภายใน 2-3 ประโยคต่อข่าว\n\n3. กรณีผู้ใช้ทักทายหรือถามคำถามทั่วไป:\n   - ตอบรับอย่างสุภาพ เป็นมิตร และแจ้งว่าพร้อมช่วยสืบค้นหรือสรุปข่าวประจำวันให้ทันที\n\n---\nข้อกำหนดด้านรูปแบบข้อความสำหรับ LINE (Strict Formatting):\n- แบ่งเนื้อหาเป็นส่วนสั้นๆ ให้อ่านง่ายบนหน้าจอมือถือ\n- เว้นบรรทัดระหว่างแต่ละหัวข้อข่าวอย่างชัดเจน\n- ใช้อีโมจิประกอบหัวข้อเพื่อความสบายตา\n- ข้อห้ามเด็ดขาด: ห้ามใช้สัญลักษณ์ Markdown ทุกชนิด เช่น ดอกจัน (*), สัญลักษณ์ชาร์ป (#, ##), ขีดกลางคู่ (__), หรือเส้นคั่น/ตาราง ให้ใช้เพียงข้อความธรรมดาและการขึ้นบรรทัดใหม่เท่านั้น\n\n---\nโครงสร้างข้อความที่ใช้ส่ง (Template):\n\n📊 สรุปภาพรวมข่าวธุรกิจวันนี้\n(สรุปประเด็นสำคัญและทิศทางภาพรวม 1-2 ประโยค)\n\n\n{\n  \"output\": {\n    \"executive_summary\": \"สรุปภาพรวมข่าววันนี้ 1-2 ประโยค\",\n    \"decision_summary\": \"สรุปสารสนเทศเพื่อสนับสนุนการตัดสินใจทางธุรกิจ 1-2 ประโยค\",\n    \"news\": [\n      {\n        \"title\": \"หัวข้อข่าวสั้นๆ\",\n        \"summary\": \"สรุปเนื้อหา 2-3 ประโยค\",\n        \"reference_url\": \"https://...\"\n      }\n    ]\n  }\n}\n(กรณีใช้ Search Tool แล้วไม่พบข่าวในรอบ 24 ชั่วโมงที่ตรงกับคำค้นหา ให้ตอบว่า:\n📊 สรุปภาพรวมข่าวธุรกิจวันนี้\nไม่พบรายงานข่าวล่าสุดในรอบ 24 ชั่วโมงสำหรับหัวข้อนี้ แนะนำให้ลองเปลี่ยนคำค้นหา หรือเลือกดูข่าวเด่นประจำวันจากเมนูหลักครับ)",
+          "maxIterations": 5
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -3680,
+        2352
+      ],
+      "id": "34bb7af1-dc0e-4f7b-8f92-66cd45f735d5",
+      "name": "AI Agent2"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.line.me/v2/bot/message/reply",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 9iojeVBvGzT4kLWyJVQGU6lNBzVp1YpIruPGDIK/aRufvb/kGXKbbJzY0eaPY2ehFjxYYDg5taaYUZh6k0GE77HcvZkWS1cRfFzzb4BlOjJfvorwfflbqsPs0Igw1oCYeEUghHK4YbMQqtw7BK+8QQdB04t89/1O/w1cDnyilFU="
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "=json",
+        "specifyBody": "json",
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "jsonBody": "={{\n(() => {\n  // 1. ดึงและแกะโครงสร้าง JSON จาก AI Agent แบบ Recursive Unnesting\n  let data = $('AI Agent2').item?.json?.output;\n\n  // แกะกรณีข้อมูลเป็น String ติดกัน (รองรับ String ที่ครอบซ้อน 2 ชั้น)\n  for (let i = 0; i < 3; i++) {\n    if (typeof data === 'string') {\n      try {\n        data = JSON.parse(data);\n      } catch (e) {\n        break;\n      }\n    }\n    if (data && typeof data === 'object' && data.output) {\n      data = data.output;\n    }\n  }\n\n  // 2. ดึงค่าสรุปภาพรวมและรายการข่าว\n  const summary = (data && data.executive_summary) \n    ? data.executive_summary \n    : \"สรุปประเด็นข่าวสารสำคัญล่าสุดที่เกี่ยวข้อง\";\n\n  // ดึง news ออกมาให้ได้ แม้จะหลุดไปอยู่ในคีย์อื่น เช่น topics\n  let newsList = [];\n  if (data && Array.isArray(data.news)) {\n    newsList = data.news;\n  } else if (data && Array.isArray(data.topics)) {\n    newsList = data.topics;\n  }\n\n  const queryText = $('Webhook').item?.json?.body?.events?.[0]?.message?.text || \"ข่าวบันเทิง\";\n\n  // 3. ประกอบกล่องแสดงข่าวสาร (newsBoxes)\n  const newsBoxes = [];\n\n  newsList.slice(0, 3).forEach((item, idx) => {\n    // ดึงหัวข้อและเนื้อหาย่อ\n    const newsTitle = typeof item === 'string' ? item : (item.title || `ข่าวที่ ${idx + 1}`);\n    const newsDesc = typeof item === 'object' ? (item.summary || item.description || '') : '';\n    const readUrl = typeof item === 'object' ? (item.reference_url || item.url || item.link) : null;\n\n    // กล่องข้อความ\n    newsBoxes.push({\n      type: \"box\",\n      layout: \"vertical\",\n      margin: idx === 0 ? \"none\" : \"lg\",\n      spacing: \"xs\",\n      contents: [\n        {\n          type: \"text\",\n          text: `${idx + 1}. ${newsTitle}`,\n          weight: \"bold\",\n          size: \"sm\",\n          color: \"#0F172A\",\n          wrap: true\n        },\n        ...(newsDesc ? [{\n          type: \"text\",\n          text: newsDesc,\n          size: \"xs\",\n          color: \"#475569\",\n          wrap: true,\n          margin: \"xs\"\n        }] : [])\n      ]\n    });\n\n    // ปุ่มกดอ่านต่อฉบับเต็ม (ถ้ามีลิงก์ URL)\n    if (readUrl && typeof readUrl === 'string' && readUrl.startsWith('http')) {\n      newsBoxes.push({\n        type: \"button\",\n        style: \"secondary\",\n        color: \"#F1F5F9\",\n        height: \"sm\",\n        margin: \"sm\",\n        action: {\n          type: \"uri\",\n          label: \"🔗 อ่านต่อฉบับเต็ม\",\n          uri: readUrl\n        }\n      });\n    }\n\n    // เส้นคั่นระหว่างข้อ\n    if (idx < Math.min(newsList.length, 3) - 1) {\n      newsBoxes.push({\n        type: \"separator\",\n        margin: \"lg\",\n        color: \"#E2E8F0\"\n      });\n    }\n  });\n\n  // กรณีข่าวใน newsList ว่างเปล่า ให้แสดงข้อความแจ้งเตือนแทนการปล่อยการ์ดว่าง\n  if (newsBoxes.length === 0) {\n    newsBoxes.push({\n      type: \"text\",\n      text: \"ไม่พบรายละเอียดข่าวเพิ่มเติมจากคำค้นหานี้ กรุณาลองระบุคำค้นหาใหม่อีกครั้ง\",\n      size: \"xs\",\n      color: \"#64748B\",\n      wrap: true\n    });\n  }\n\n  // 4. บรรจุลงโครงสร้าง Flex Message\n  return JSON.stringify({\n    replyToken: $('Webhook').item.json.body.events[0].replyToken,\n    messages: [\n      {\n        type: \"flex\",\n        altText: `สรุป${queryText}`,\n        contents: {\n          type: \"bubble\",\n          size: \"mega\",\n          header: {\n            type: \"box\",\n            layout: \"vertical\",\n            backgroundColor: \"#0B132B\",\n            paddingAll: \"xl\",\n            contents: [\n              {\n                type: \"box\",\n                layout: \"horizontal\",\n                spacing: \"xs\",\n                contents: [\n                  {\n                    type: \"text\",\n                    text: \"📊\",\n                    size: \"xs\",\n                    flex: 0\n                  },\n                  {\n                    type: \"text\",\n                    text: \"DAILY NEWS BRIEF\",\n                    weight: \"bold\",\n                    color: \"#38BDF8\",\n                    size: \"xs\"\n                  }\n                ]\n              },\n              {\n                type: \"text\",\n                text: queryText.startsWith('สรุป') ? queryText : `สรุป${queryText}`,\n                weight: \"bold\",\n                color: \"#FFFFFF\",\n                size: \"xl\",\n                margin: \"sm\",\n                wrap: true\n              }\n            ]\n          },\n          body: {\n            type: \"box\",\n            layout: \"vertical\",\n            paddingAll: \"xl\",\n            contents: [\n              {\n                type: \"box\",\n                layout: \"vertical\",\n                backgroundColor: \"#F0F6FF\",\n                cornerRadius: \"md\",\n                paddingAll: \"md\",\n                margin: \"none\",\n                contents: [\n                  {\n                    type: \"text\",\n                    text: \"🔹 ภาพรวมประจำวัน\",\n                    weight: \"bold\",\n                    size: \"xs\",\n                    color: \"#0284C7\"\n                  },\n                  {\n                    type: \"text\",\n                    text: summary,\n                    size: \"xs\",\n                    color: \"#334155\",\n                    wrap: true,\n                    margin: \"xs\"\n                  }\n                ]\n              },\n              {\n                type: \"separator\",\n                margin: \"lg\",\n                color: \"#E2E8F0\"\n              },\n              ...newsBoxes\n            ]\n          }\n        }\n      }\n    ]\n  });\n})()\n}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -5120,
+        3168
+      ],
+      "id": "b29b5fc1-eedc-47a3-9d70-3e702597274a",
+      "name": "HTTP Request3",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 6
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -2672,
+        2368
+      ],
+      "id": "f974328a-f27d-4790-88da-9216fa150e79",
+      "name": "Schedule Trigger3"
+    },
+    {
+      "parameters": {
+        "url": "https://news.google.com/rss/headlines/section/topic/BUSINESS?hl=th&gl=TH&ceid=TH:th",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        -2304,
+        2368
+      ],
+      "id": "225554d5-328f-4b0a-a5eb-79a2c8cee179",
+      "name": "google2",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "=daily_news_broadcast",
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -1264,
+        2576
+      ],
+      "id": "d8009855-81d1-45fe-bd81-1123d428164a",
+      "name": "Simple Memory2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "fc84b9f6-57fb-492f-9a19-8901547d77c3",
+              "leftValue": "={{ ($json.isoDate || $json.pubDate).toDateTime() }}",
+              "rightValue": "={{ $now.minus({hours: 6}) }}",
+              "operator": {
+                "type": "dateTime",
+                "operation": "afterOrEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -2064,
+        2368
+      ],
+      "id": "6128b283-f74f-4313-ad18-d2fb8a39f55a",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        -1456,
+        2352
+      ],
+      "id": "cffdf54d-aade-451d-866d-5f71022258c5",
+      "name": "Aggregate4"
+    },
+    {
+      "parameters": {
+        "query": "=ข่าวด่วน ธุรกิจ เศรษฐกิจ ล่าสุด",
+        "options": {
+          "topic": "news",
+          "days": 1
+        }
+      },
+      "type": "@tavily/n8n-nodes-tavily.tavilyTool",
+      "typeVersion": 1,
+      "position": [
+        -1136,
+        2576
+      ],
+      "id": "940f954e-66bb-499c-a1dd-68074827f1f5",
+      "name": "Search in Tavily3",
+      "credentials": {
+        "tavilyApi": {
+          "id": "JXuA4GpJqMnZ2eUw",
+          "name": "Tavily account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -1136,
+        2736
+      ],
+      "id": "cb4116c7-ab0d-490f-b7f5-7f5596c4ef0c",
+      "name": "OpenAI Chat Model3",
+      "credentials": {
+        "openAiApi": {
+          "id": "ORkT4YTg02xMUphE",
+          "name": "OpenAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"executive_summary\": \"สรุปภาพรวมข่าวสำคัญของวันนี้\",\n  \"decision_summary\": \"สรุปสารสนเทศเพื่อสนับสนุนการตัดสินใจทางธุรกิจ\",\n  \"news\": [\n    {\n      \"title\": \"ชื่อข่าวที่ 1\",\n      \"date\": \"21 กรกฎาคม 2569\",\n      \"category\": \"เศรษฐกิจ\",\n      \"summary\": \"สรุปข่าวโดยย่อ\",\n      \"image_url\": \"\",\n      \"reference_url\": \"https://example.com/news1\"\n    },\n    {\n      \"title\": \"ชื่อข่าวที่ 2\",\n      \"date\": \"21 กรกฎาคม 2569\",\n      \"category\": \"การเมือง\",\n      \"summary\": \"สรุปข่าวโดยย่อ\",\n      \"image_url\": \"\",\n      \"reference_url\": \"https://example.com/news2\"\n    },\n    {\n      \"title\": \"ชื่อข่าวที่ 3\",\n      \"date\": \"21 กรกฎาคม 2569\",\n      \"category\": \"เทคโนโลยี\",\n      \"summary\": \"สรุปข่าวโดยย่อ\",\n      \"image_url\": \"\",\n      \"reference_url\": \"https://example.com/news3\"\n    },\n    {\n      \"title\": \"ชื่อข่าวที่ 2\",\n      \"date\": \"21 กรกฎาคม 2569\",\n      \"category\": \"การเมือง\",\n      \"summary\": \"สรุปข่าวโดยย่อ\",\n      \"image_url\": \"\",\n      \"reference_url\": \"https://example.com/news2\"\n    },\n    {\n      \"title\": \"ชื่อข่าวที่ 3\",\n      \"date\": \"21 กรกฎาคม 2569\",\n      \"category\": \"เทคโนโลยี\",\n      \"summary\": \"สรุปข่าวโดยย่อ\",\n      \"image_url\": \"\",\n      \"reference_url\": \"https://example.com/news3\"\n    }\n  ]\n}",
+        "autoFix": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        -1008,
+        2576
+      ],
+      "id": "a9d69028-baac-4321-9a2a-bb89c9c64ae1",
+      "name": "Structured Output Parser3"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=กรุณาวิเคราะห์และสรุปประเด็นข่าวด่วนรอบเวลาจากข้อมูลข่าวสารเหล่านี้:\n\n{{ $json.data.map((item, index) => `${index + 1}. หัวข้อ: ${item.title}\\nเนื้อหา: ${item.contentSnippet || item.content || item.description}\\nลิงก์: ${item.link}`).join('\\n\\n') }}\n\n⚠️ ข้อจำกัดสำคัญ (ป้องกันการรายงานข่าวซ้ำ):\nต่อไปนี้คือรายการลิงก์และหัวข้อข่าวที่เคยส่งให้ผู้ใช้แล้วในระบบ:\n- วิเคราะห์ภาพรวม (executive_summary) และสรุปสารสนเทศเพื่อสนับสนุนการตัดสินใจทางธุรกิจ (decision_summary)",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=คุณคือ \"AI Breaking News Flash Reporter\" ผู้เชี่ยวชาญการรายงานและสรุปข่าวด่วนอัตโนมัติรอบเวลา\n\nหน้าที่ของคุณ:\n1. วิเคราะห์ข้อมูลข่าวสารล่าสุดที่เกิดขึ้นในรอบ 3 ชั่วโมงที่ผ่านมา\n2. คัดเลือกเฉพาะประเด็นข่าวด่วน ข่าวที่มีผลกระทบสูง หรือข่าวที่น่าจับตามองที่สุด จำนวนไม่เกิน 3 ข่าว\n3. สรุปเนื้อหาให้อยู่ในรูปแบบกระชับ ตรงประเด็น เหมาะกับการแจ้งเตือนแบบพุชบนหน้าจอมือถือ (LINE Push Notification)\n4. สรุปสารสนเทศเพื่อสนับสนุนการตัดสินใจทางธุรกิจ (decision_summary)\n กฎการทำงานอย่างเคร่งครัด:\n- ตรวจสอบรายการข่าวที่เคยเผยแพร่ไปแล้วเสมอ หากข่าวที่ค้นพบจาก Search Tool มี URL หรือประเด็นซ้ำกับประวัติเดิม ให้คัดทิ้งทันที และเลือกข่าวอื่นที่มีความสดใหม่กว่า\n\n⛔ กฎเหล็กการคัดกรองข่าว (Negative Constraints):\n- ห้ามเลือกข่าวพยากรณ์อากาศ, สภาพอากาศประจำวัน, รายงานอุณหภูมิ, ข่าวฝนตกแดดออกทั่วไป โดยเด็ดขาด (ยกเว้นเป็นภัยพิบัติระดับชาติที่สั่งปิดนิคมอุตสาหกรรมหรือกระทบซัพพลายเชนรุนแรงเท่านั้น)\n- ห้ามเลือกข่าวบันเทิง ข่าวอาชญากรรมรายวัน หรืออุบัติเหตุที่ไม่เกี่ยวข้องกับธุรกิจ\n- ตรวจสอบรายการข่าวที่เคยเผยแพร่ไปแล้วเสมอ หากข่าวมี URL หรือประเด็นซ้ำกับประวัติเดิม ให้คัดทิ้งทันที\n\nกฎการสร้างข้อความ:\n- โทนเสียง: ฉับไว เป็นทางการ เป็นกลาง และเน้นข้อเท็จจริง\n- ห้ามใช้สัญลักษณ์ Markdown เช่น *, **, #, ## หรือตารางโดยเด็ดขาด\n- จัดกลุ่มข้อความด้วยบรรทัดว่างและใช้อีโมจิที่สื่อความหมายชัดเจน\n\nโครงสร้างผลลัพธ์ที่ต้องส่งออก (Strict Text Format):\n\n🔔 อัปเดตข่าวด่วนรอบ 6 ชั่วโมง\n(ระบุสรุปทิศทางข่าวหรือภาพรวมสำคัญ 1 ประโยคสั้น)\n\n⚡ 1. [หัวข้อข่าวด่วนที่ 1]\n- สาระสำคัญ: (สรุปเหตุการณ์และผลกระทบใน 1-2 ประโยค)\n- ที่มา: (URL ข่าวต้นฉบับ)\n\n⚡ 2. [หัวข้อข่าวด่วนที่ 2]\n- สาระสำคัญ: (สรุปเหตุการณ์และผลกระทบใน 1-2 ประโยค)\n- ที่มา: (URL ข่าวต้นฉบับ)\n\n⚡ 3. [หัวข้อข่าวด่วนที่ 3]\n- สาระสำคัญ: (สรุปเหตุการณ์และผลกระทบใน 1-2 ประโยค)\n- ที่มา: (URL ข่าวต้นฉบับ)",
+          "maxIterations": 5
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -1264,
+        2352
+      ],
+      "id": "44a1de76-0fdf-4cdc-965b-11fd5710a6d0",
+      "name": "AI Agent3"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.line.me/v2/bot/message/multicast",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 05K6MoubB4aakDLkFIgSwS2Fh5rESAR5Mb+NqL5D6dQddh/fyAB+yrHzMhV9tW1cFjLuWUKwSV2KHObb0JNXl2onGtYJdI8o0+ALLm8+Yxb7Qpyjej7IxkZPtzCLVBvwu9XTQohMpNLWyLQYXKCfZwdB04t89/1O/w1cDnyilFU="
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "=json",
+        "specifyBody": "json",
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "jsonBody": "={{ JSON.stringify($json) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -752,
+        2352
+      ],
+      "id": "a69a5bd3-ebf6-4bf4-abcc-996e8cdfe21a",
+      "name": "HTTP Request4"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.line.me/v2/bot/message/reply",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 9iojeVBvGzT4kLWyJVQGU6lNBzVp1YpIruPGDIK/aRufvb/kGXKbbJzY0eaPY2ehFjxYYDg5taaYUZh6k0GE77HcvZkWS1cRfFzzb4BlOjJfvorwfflbqsPs0Igw1oCYeEUghHK4YbMQqtw7BK+8QQdB04t89/1O/w1cDnyilFU="
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "=json",
+        "specifyBody": "json",
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "jsonBody": "={{\n(() => {\n  // 1. ดึงและแปลงข้อมูล JSON ซ้อนจาก AI Agent2 ให้เป็น Object ที่แท้จริง\n  let parsed = null;\n  try {\n    if (typeof $json.output === 'object' &&$json.output !== null) {\n      parsed = $json.output;\n    } else if (typeof $json.output === 'string') {\n      parsed = JSON.parse($json.output);\n    }\n  } catch (e) {\n    parsed = null;\n  }\n\n  // รองรับกรณีที่โมเดลครอบคีย์ output มาอีกชั้น\n  const data = parsed?.output || parsed || {};\n  const overview = data.executive_summary || data.overview || \"สรุปประเด็นข่าวสารสำคัญล่าสุด\";\n  const newsList = Array.isArray(data.news) ? data.news.slice(0, 3) : [];\n  const userText = $('Webhook').item?.json?.body?.events?.[0]?.message?.text || \"ข่าวที่คุณค้นหา\";\n\n  // 2. สร้างกล่องข่าวและปุ่มอ่านต่อฉบับเต็มทีละข่าว\n  const newsContents = [];\n  newsList.forEach((item, index) => {\n    const singleNews = [\n      {\n        type: \"text\",\n        text: `${index + 1}. ${item.title || 'ข่าวสำคัญ'}`,\n        weight: \"bold\",\n        size: \"sm\",\n        color: \"#0F172A\",\n        wrap: true\n      },\n      {\n        type: \"text\",\n        text: item.summary || \"\",\n        size: \"xs\",\n        color: \"#64748B\",\n        wrap: true,\n        margin: \"xs\"\n      }\n    ];\n\n    // ถ้ามี URL ให้สร้างปุ่มแบบ Link สำหรับกดเปิดดูเว็บข่าว\n    const targetUrl = item.reference_url || item.link || item.url;\n    if (targetUrl) {\n      singleNews.push({\n        type: \"button\",\n        style: \"link\",\n        height: \"sm\",\n        action: {\n          type: \"uri\",\n          label: \"🔗 อ่านต่อฉบับเต็ม\",\n          uri: targetUrl\n        }\n      });\n    }\n\n    newsContents.push({\n      type: \"box\",\n      layout: \"vertical\",\n      spacing: \"xs\",\n      margin: \"md\",\n      contents: singleNews\n    });\n  });\n\n  // 3. ประกอบโครงสร้าง Flex Message\n  return JSON.stringify({\n    replyToken: $('Webhook').item.json.body.events[0].replyToken,\n    messages: [\n      {\n        type: \"flex\",\n        altText: `สรุปข่าว: ${userText}`,\n        contents: {\n          type: \"bubble\",\n          header: {\n            type: \"box\",\n            layout: \"vertical\",\n            backgroundColor: \"#0F172A\",\n            paddingAll: \"lg\",\n            contents: [\n              {\n                type: \"text\",\n                text: \"📊 DAILY NEWS BRIEF\",\n                weight: \"bold\",\n                color: \"#38BDF8\",\n                size: \"xs\"\n              },\n              {\n                type: \"text\",\n                text: `สรุป${userText}`,\n                weight: \"bold\",\n                color: \"#FFFFFF\",\n                size: \"lg\",\n                margin: \"xs\",\n                wrap: true\n              }\n            ]\n          },\n          body: {\n            type: \"box\",\n            layout: \"vertical\",\n            spacing: \"md\",\n            contents: [\n              {\n                type: \"box\",\n                layout: \"vertical\",\n                backgroundColor: \"#F1F5F9\",\n                paddingAll: \"md\",\n                cornerRadius: \"md\",\n                contents: [\n                  {\n                    type: \"text\",\n                    text: \"🔹 ภาพรวมประจำวัน\",\n                    weight: \"bold\",\n                    size: \"xs\",\n                    color: \"#334155\"\n                  },\n                  {\n                    type: \"text\",\n                    text: overview,\n                    size: \"xs\",\n                    color: \"#475569\",\n                    wrap: true,\n                    margin: \"xs\"\n                  }\n                ]\n              },\n              {\n                type: \"separator\"\n              },\n              ...(newsContents.length > 0 ? newsContents : [\n                {\n                  type: \"text\",\n                  text: overview,\n                  size: \"sm\",\n                  color: \"#0F172A\",\n                  wrap: true\n                }\n              ])\n            ]\n          }\n        }\n      }\n    ]\n  });\n})()\n}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -5120,
+        3824
+      ],
+      "id": "a2cda1d9-b0bb-4ab3-be3f-34e9918e7b7b",
+      "name": "HTTP Request6"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1QdJSTvuwZbynDulibau8KhgLmM_W5dNT4qkx8tRlbBM",
+          "mode": "list",
+          "cachedResultName": "n8n_news",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QdJSTvuwZbynDulibau8KhgLmM_W5dNT4qkx8tRlbBM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1370188854,
+          "mode": "list",
+          "cachedResultName": "n8n_news",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QdJSTvuwZbynDulibau8KhgLmM_W5dNT4qkx8tRlbBM/edit#gid=1370188854"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Log_ID": "={{ $execution.id }}",
+            "User_ID": "={{ $('Webhook').item.json.body.events[0].source.userId }}",
+            "Topic_Query": "={{ $('Webhook').item.json.body.events[0].message.text }}",
+            "Timestamp": "={{ $now.setZone('Asia/Bangkok').toFormat('yyyy-MM-dd HH:mm:ss') }}",
+            "Summary_Result": "={{ JSON.stringify($('AI Agent1').item.json.output) }}",
+            "Status": "=Success",
+            "Source_URLs": "={{ $('Code in JavaScript').all().map(item => item.json.link).join(', ') }}",
+            "Decision_Summary": "={{ $('AI Agent1').item.json.output.decision_summary || '' }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Log_ID",
+              "displayName": "Log_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "User_ID",
+              "displayName": "User_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Topic_Query",
+              "displayName": "Topic_Query",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Timestamp",
+              "displayName": "Timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Summary_Result",
+              "displayName": "Summary_Result",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Source_URLs",
+              "displayName": "Source_URLs",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Decision_Summary",
+              "displayName": "Decision_Summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -1792,
+        1744
+      ],
+      "id": "06a4e3c1-cc0e-4abf-8688-ce87626d90a7",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "DjYSEhpYMwiJHaIJ",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1QdJSTvuwZbynDulibau8KhgLmM_W5dNT4qkx8tRlbBM",
+          "mode": "list",
+          "cachedResultName": "n8n_news",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QdJSTvuwZbynDulibau8KhgLmM_W5dNT4qkx8tRlbBM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1370188854,
+          "mode": "list",
+          "cachedResultName": "n8n_news",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QdJSTvuwZbynDulibau8KhgLmM_W5dNT4qkx8tRlbBM/edit#gid=1370188854"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Log_ID": "={{ $execution.id }}",
+            "User_ID": "={{ $('Webhook').item.json.body.events[0].source.userId }}",
+            "Topic_Query": "={{ $('Webhook').item.json.body.events[0].message.text }}",
+            "Timestamp": "={{ $now.setZone('Asia/Bangkok').toFormat('yyyy-MM-dd HH:mm:ss') }}",
+            "Summary_Result": "={{ $('AI Agent2').item.json.output.executive_summary || $('AI Agent2').item.json.output }}",
+            "Status": "=Success",
+            "Source_URLs": "={{ (JSON.stringify($('AI Agent2').item.json.output).match(/https?:\\/\\/[^\\s\\\\\"']+/g) || []).join(', ') }}",
+            "Decision_Summary": "={{ $('AI Agent2').item.json.output.decision_summary || '' }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Log_ID",
+              "displayName": "Log_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "User_ID",
+              "displayName": "User_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Topic_Query",
+              "displayName": "Topic_Query",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Timestamp",
+              "displayName": "Timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Summary_Result",
+              "displayName": "Summary_Result",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Source_URLs",
+              "displayName": "Source_URLs",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Decision_Summary",
+              "displayName": "Decision_Summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -3168,
+        2352
+      ],
+      "id": "1e30e81b-f305-4b08-b4db-776bdc6cfa83",
+      "name": "Append row in sheet2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "DjYSEhpYMwiJHaIJ",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.line.me/v2/bot/message/reply",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 9iojeVBvGzT4kLWyJVQGU6lNBzVp1YpIruPGDIK/aRufvb/kGXKbbJzY0eaPY2ehFjxYYDg5taaYUZh6k0GE77HcvZkWS1cRfFzzb4BlOjJfvorwfflbqsPs0Igw1oCYeEUghHK4YbMQqtw7BK+8QQdB04t89/1O/w1cDnyilFU="
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "=json",
+        "specifyBody": "json",
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "jsonBody": "={{\n\n(() => {\n\n  // 1. ดึงข้อความดิบจาก AI Agent2\n\n  let raw = $json.output;\n\n  let text = \"\";\n\n  let newsList = [];\n\n  let overview = \"\";\n\n\n\n  // กรณีที่ 1: ถ้าส่งมาเป็น JSON Object หรือ String JSON ให้ลอง parse ก่อน\n\n  let parsed = null;\n\n  try {\n\n    if (typeof raw === 'object' && raw !== null) {\n\n      parsed = raw;\n\n    } else if (typeof raw === 'string' && (raw.trim().startsWith('{') || raw.trim().startsWith('['))) {\n\n      parsed = JSON.parse(raw);\n\n    }\n\n  } catch (e) {\n\n    parsed = null;\n\n  }\n\n\n\n  const data = parsed?.output || parsed;\n\n  if (data && typeof data === 'object' && Array.isArray(data.news)) {\n\n    overview = data.executive_summary || data.overview || \"ภาพรวมประเด็นข่าวสำคัญล่าสุด\";\n\n    newsList = data.news.slice(0, 3).map(item => ({\n\n      title: item.title,\n\n      summary: item.summary,\n\n      url: item.reference_url || item.link || item.url\n\n    }));\n\n  } else {\n\n    // กรณีที่ 2: ถ้าส่งมาเป็นข้อความ Plain Text (แบบในภาพล่าสุด)\n\n    text = (typeof raw === 'string' ? raw : JSON.stringify(raw))\n\n      .replace(/\\\\n/g, '\\n')\n\n      .replace(/\\\\\"/g, '\"')\n\n      .trim();\n\n\n\n    // ดึงท่อนภาพรวมประจำวัน\n\n    const overviewMatch = text.match(/(?:สรุปภาพรวม[^\\n]*|ภาพรวม[^\\n]*)\\n*([\\s\\S]*?)(?=(?:หัวข้อ\\s*[:：]|\\d+\\.\\s*หัวข้อ|$))/i);\n\n    if (overviewMatch) {\n\n      overview = overviewMatch[1].trim();\n\n    } else {\n\n      overview = \"สรุปประเด็นข่าวสารสำคัญล่าสุดที่เกี่ยวข้อง\";\n\n    }\n\n\n\n    // ตัดแบ่งข่าวตามคำว่า \"หัวข้อ:\"\n\n    const rawItems = text.split(/(?=(?:⚡\\s*)?(?:[1-9]\\.\\s*)?หัวข้อ\\s*[:：])/g)\n\n      .filter(item => /หัวข้อ\\s*[:：]/.test(item));\n\n\n\n    rawItems.slice(0, 3).forEach((itemStr, idx) => {\n\n      // ดึงหัวข้อ\n\n      const titleMatch = itemStr.match(/หัวข้อ\\s*[:：]\\s*([^\\n]+)/);\n\n      // ดึงเนื้อหา\n\n      const summaryMatch = itemStr.match(/เนื้อหา\\s*[:：]\\s*([\\s\\S]*?)(?=(?:ลิงก์|ที่มา|แหล่งที่มา)\\s*[:：]|$)/);\n\n      // ดึงลิงก์ URL\n\n      const linkMatch = itemStr.match(/(https?:\\/\\/[^\\s\\)\\n]+)/);\n\n\n\n      newsList.push({\n\n        title: titleMatch ? titleMatch[1].trim() : `ข่าวที่ ${idx + 1}`,\n\n        summary: summaryMatch ? summaryMatch[1].trim() : \"\",\n\n        url: linkMatch ? linkMatch[1].trim() : null\n\n      });\n\n    });\n\n  }\n\n\n\n  const userText = $('Webhook').item?.json?.body?.events?.[0]?.message?.text || \"ข่าวด่วน\";\n\n\n\n  // 2. สร้างกล่องข่าวและปุ่มอ่านต่อฉบับเต็มทีละข่าว\n\n  const newsContents = [];\n\n  newsList.forEach((item, index) => {\n\n    const singleNews = [\n\n      {\n\n        type: \"text\",\n\n        text: `${index + 1}. ${item.title}`,\n\n        weight: \"bold\",\n\n        size: \"sm\",\n\n        color: \"#0F172A\",\n\n        wrap: true\n\n      }\n\n    ];\n\n\n\n    if (item.summary) {\n\n      singleNews.push({\n\n        type: \"text\",\n\n        text: item.summary,\n\n        size: \"xs\",\n\n        color: \"#64748B\",\n\n        wrap: true,\n\n        margin: \"xs\"\n\n      });\n\n    }\n\n\n\n    if (item.url) {\n\n      singleNews.push({\n\n        type: \"button\",\n\n        style: \"link\",\n\n        height: \"sm\",\n\n        action: {\n\n          type: \"uri\",\n\n          label: \"🔗 อ่านต่อฉบับเต็ม\",\n\n          uri: item.url\n\n        }\n\n      });\n\n    }\n\n\n\n    newsContents.push({\n\n      type: \"box\",\n\n      layout: \"vertical\",\n\n      spacing: \"xs\",\n\n      margin: \"md\",\n\n      contents: singleNews\n\n    });\n\n  });\n\n\n\n  // 3. ประกอบโครงสร้าง Flex Message\n\n  return JSON.stringify({\n\n    replyToken: $('Webhook').item.json.body.events[0].replyToken,\n\n    messages: [\n\n      {\n\n        type: \"flex\",\n\n        altText: `สรุปข่าว: ${userText}`,\n\n        contents: {\n\n          type: \"bubble\",\n\n          header: {\n\n            type: \"box\",\n\n            layout: \"vertical\",\n\n            backgroundColor: \"#0F172A\",\n\n            paddingAll: \"lg\",\n\n            contents: [\n\n              {\n\n                type: \"text\",\n\n                text: \"📊 DAILY NEWS BRIEF\",\n\n                weight: \"bold\",\n\n                color: \"#38BDF8\",\n\n                size: \"xs\"\n\n              },\n\n              {\n\n                type: \"text\",\n\n                text: `สรุป${userText}`,\n\n                weight: \"bold\",\n\n                color: \"#FFFFFF\",\n\n                size: \"lg\",\n\n                margin: \"xs\",\n\n                wrap: true\n\n              }\n\n            ]\n\n          },\n\n          body: {\n\n            type: \"box\",\n\n            layout: \"vertical\",\n\n            spacing: \"md\",\n\n            contents: [\n\n              {\n\n                type: \"box\",\n\n                layout: \"vertical\",\n\n                backgroundColor: \"#F1F5F9\",\n\n                paddingAll: \"md\",\n\n                cornerRadius: \"md\",\n\n                contents: [\n\n                  {\n\n                    type: \"text\",\n\n                    text: \"🔹 ภาพรวมประจำวัน\",\n\n                    weight: \"bold\",\n\n                    size: \"xs\",\n\n                    color: \"#334155\"\n\n                  },\n\n                  {\n\n                    type: \"text\",\n\n                    text: overview,\n\n                    size: \"xs\",\n\n                    color: \"#475569\",\n\n                    wrap: true,\n\n                    margin: \"xs\"\n\n                  }\n\n                ]\n\n              },\n\n              {\n\n                type: \"separator\"\n\n              },\n\n              ...(newsContents.length > 0 ? newsContents : [\n\n                {\n\n                  type: \"text\",\n\n                  text: text || overview,\n\n                  size: \"sm\",\n\n                  color: \"#0F172A\",\n\n                  wrap: true\n\n                }\n\n              ])\n\n            ]\n\n          }\n\n        }\n\n      }\n\n    ]\n\n  });\n\n})()\n\n}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -5968,
+        2928
+      ],
+      "id": "24f6ed37-ebd4-4d00-bbf0-fffcd2fabe9e",
+      "name": "สำรอง agent 2",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.line.me/v2/bot/message/reply",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 9iojeVBvGzT4kLWyJVQGU6lNBzVp1YpIruPGDIK/aRufvb/kGXKbbJzY0eaPY2ehFjxYYDg5taaYUZh6k0GE77HcvZkWS1cRfFzzb4BlOjJfvorwfflbqsPs0Igw1oCYeEUghHK4YbMQqtw7BK+8QQdB04t89/1O/w1cDnyilFU="
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "=json",
+        "specifyBody": "json",
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "jsonBody": "={{\n\nJSON.stringify({\n\n  replyToken: $('Webhook').item.json.body.events[0].replyToken,\n\n  messages: [\n\n    {\n\n      type: \"flex\",\n\n      altText: \"สรุปข่าวสำคัญประจำวัน\",\n\n      contents: {\n\n        type: \"bubble\",\n\n        header: {\n\n          type: \"box\",\n\n          layout: \"vertical\",\n\n          backgroundColor: \"#0F172A\",\n\n          paddingAll: \"lg\",\n\n          contents: [\n\n            {\n\n              type: \"text\",\n\n              text: \"📊 DAILY NEWS BRIEF\",\n\n              weight: \"bold\",\n\n              color: \"#38BDF8\",\n\n              size: \"xs\"\n\n            },\n\n            {\n\n              type: \"text\",\n\n              text: `สรุป${$('Webhook').item.json.body.events[0].message.text}`,\n\n              weight: \"bold\",\n\n              color: \"#FFFFFF\",\n\n              size: \"lg\",\n\n              margin: \"xs\"\n\n            }\n\n          ]\n\n        },\n\n        body: {\n\n          type: \"box\",\n\n          layout: \"vertical\",\n\n          spacing: \"md\",\n\n          contents: [\n\n            {\n\n              type: \"box\",\n\n              layout: \"vertical\",\n\n              backgroundColor: \"#F1F5F9\",\n\n              paddingAll: \"md\",\n\n              cornerRadius: \"md\",\n\n              contents: [\n\n                {\n\n                  type: \"text\",\n\n                  text: \"🔹 ภาพรวมประจำวัน\",\n\n                  weight: \"bold\",\n\n                  size: \"xs\",\n\n                  color: \"#334155\"\n\n                },\n\n                {\n\n                  type: \"text\",\n\n                  text: $json.output.overview || $json.output.executive_summary || \"ภาพรวมข่าวสารสำคัญในรอบวัน\",\n\n                  size: \"xs\",\n\n                  color: \"#475569\",\n\n                  wrap: true,\n\n                  margin: \"xs\"\n\n                }\n\n              ]\n\n            },\n\n            {\n\n              type: \"separator\"\n\n            },\n\n            ...($json.output.news || []).slice(0, 3).map((item, index) => ({\n\n              type: \"box\",\n\n              layout: \"vertical\",\n\n              spacing: \"xs\",\n\n              margin: \"sm\",\n\n              contents: [\n\n                {\n\n                  type: \"text\",\n\n                  text: `${index + 1}. ${item.title}`,\n\n                  weight: \"bold\",\n\n                  size: \"sm\",\n\n                  color: \"#0F172A\",\n\n                  wrap: true\n\n                },\n\n                {\n\n                  type: \"text\",\n\n                  text: item.summary,\n\n                  size: \"xs\",\n\n                  color: \"#64748B\",\n\n                  wrap: true\n\n                },\n\n                {\n\n                  type: \"button\",\n\n                  style: \"link\",\n\n                  height: \"sm\",\n\n                  action: {\n\n                    type: \"uri\",\n\n                    label: \"🔗 อ่านต่อฉบับเต็ม\",\n\n                    uri: item.link || item.reference_url || \"https://news.google.com\"\n\n                  }\n\n                }\n\n              ]\n\n            }))\n\n          ]\n\n        }\n\n      }\n\n    }\n\n  ]\n\n})\n\n}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -4576,
+        224
+      ],
+      "id": "2145ad9c-69b3-4757-bdd3-354a882bedfc",
+      "name": "สำรอง agent 1",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// ฟังก์ชันทำความสะอาด URL (ตัด parameter พ่วงท้ายออก และแปลงเป็นตัวพิมพ์เล็ก)\nfunction cleanUrl(url) {\n  if (!url) return '';\n  return String(url).trim().split('?')[0].split('#')[0].toLowerCase();\n}\n\n// ฟังก์ชันทำความสะอาด Title (ลบช่องว่างส่วนเกิน เครื่องหมายคำพูด และแปลงเป็นตัวพิมพ์เล็ก)\nfunction cleanText(text) {\n  if (!text) return '';\n  return String(text)\n    .trim()\n    .toLowerCase()\n    .replace(/[\"'”‘“’'`]/g, '') // ตัดเครื่องหมายคำพูดออก\n    .replace(/\\s+/g, ' ');       // ยุบช่องว่างซ้ำ\n}\n\n// 1. ดึงประวัติเดิมจากโหนด Get row(s) in sheet1 ทั้ง URL และ Title\nconst sheetRows = $('Get row(s) in sheet1').all();\nconst usedUrlsSet = new Set();\nconst usedTitlesSet = new Set();\n\nsheetRows.forEach(row => {\n  // --- 1.1 ดึง URL เดิมในชีต ---\n  const urlData = row.json.Source_URLs || row.json.link || \"\";\n  if (urlData) {\n    String(urlData).split(',').forEach(u => {\n      const cleaned = cleanUrl(u);\n      if (cleaned) usedUrlsSet.add(cleaned);\n    });\n  }\n\n  // --- 1.2 ดึง Title เดิมในชีต (จาก Summary_Result, Topic_Query หรือ title) ---\n  const rawSummary = row.json.Summary_Result || row.json.Topic_Query || row.json.title || \"\";\n  if (rawSummary) {\n    // ใช้ Regex ดึงเฉพาะหลังคำว่า \"Title 1:\", \"Title 2:\" หรือชื่อหัวข้อข่าว\n    const matches = [...String(rawSummary).matchAll(/Title\\s*\\d+\\s*:\\s*([^\\n\\r]+)/gi)];\n    if (matches.length > 0) {\n      matches.forEach(m => {\n        const cleaned = cleanText(m[1]);\n        if (cleaned) usedTitlesSet.add(cleaned);\n      });\n    } else {\n      // กรณีบันทึกเป็นข้อความธรรมดา\n      const cleaned = cleanText(rawSummary);\n      if (cleaned) usedTitlesSet.add(cleaned);\n    }\n  }\n});\n\n// 2. ดึงข่าวใหม่ที่เข้ามาในรอบนี้จาก RSS / Input\nconst incomingNews = $input.all();\nconst freshNews = [];\n\nfor (const item of incomingNews) {\n  const currentRawLink = item.json.link || item.json.url || \"\";\n  const currentRawTitle = item.json.title || item.json.headline || \"\";\n\n  const cleanedCurrentLink = cleanUrl(currentRawLink);\n  const cleanedCurrentTitle = cleanText(currentRawTitle);\n\n  // ตรวจสอบว่าทั้ง URL และ Title ไม่อยู่ในประวัติเดิมของ Google Sheets\n  const isUrlDuplicate = cleanedCurrentLink && usedUrlsSet.has(cleanedCurrentLink);\n  const isTitleDuplicate = cleanedCurrentTitle && usedTitlesSet.has(cleanedCurrentTitle);\n\n  if (!isUrlDuplicate && !isTitleDuplicate) {\n    freshNews.push(item);\n\n    // บันทึกลง Set ทันที เพื่อป้องกันข่าวซ้ำกันเองภายในรอบเดียวกัน\n    if (cleanedCurrentLink) usedUrlsSet.add(cleanedCurrentLink);\n    if (cleanedCurrentTitle) usedTitlesSet.add(cleanedCurrentTitle);\n  }\n}\n\n// 3. ส่งเฉพาะข่าวที่ไม่เคยมีประวัติซ้ำออกไป\nreturn freshNews;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -3104,
+        1744
+      ],
+      "id": "9d9760f8-c248-459b-8df6-e07126565d00",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "3fab1d22-9112-4f92-bb21-1672461492e4",
+              "leftValue": "={{ $('Get row(s) in sheet1').all().map(r => r.json.Source_URLs).filter(Boolean).join(', ') }}",
+              "rightValue": "={{ $json.link }}",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -4576,
+        672
+      ],
+      "id": "ae30b18a-64d3-46d9-9d76-057ed9f95810",
+      "name": "Filter1"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1QdJSTvuwZbynDulibau8KhgLmM_W5dNT4qkx8tRlbBM",
+          "mode": "list",
+          "cachedResultName": "n8n_news",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QdJSTvuwZbynDulibau8KhgLmM_W5dNT4qkx8tRlbBM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1370188854,
+          "mode": "list",
+          "cachedResultName": "n8n_news",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QdJSTvuwZbynDulibau8KhgLmM_W5dNT4qkx8tRlbBM/edit#gid=1370188854"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -2496,
+        2368
+      ],
+      "id": "5483f9bb-dd65-4e7e-ad76-6d8e524bb07f",
+      "name": "Get row(s) in sheet3",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "DjYSEhpYMwiJHaIJ",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=ข้อความค้นหาจากผู้ใช้: \"{{ $('Webhook').item.json.body.events[0].message.text }}\"\nเวลาปัจจุบันของระบบ: {{ $now.toISO() }}\n\n---\nคำสั่งการทำงาน:\n1. ให้สืบค้นข่าวสารภาษาไทยล่าสุดที่เกี่ยวข้องกับคำว่า \"{{ $('Webhook').item.json.body.events[0].message.text }}\"\n2. คัดเลือกเฉพาะข่าวที่มีอายุไม่เกิน 24 ชั่วโมง โดยนำมาสรุป 3 ข่าว\n3. สรุปเป็นภาษาไทยล้วน อธิบายสั้น กระชับ เข้าใจง่าย ภายใน 2-3 ประโยคต่อข่าว และดึงภาพจริงมาถ้ามี\n4. นำลิงก์ URL ข่าวจริงจากผลการค้นหามาใส่ ห้ามใช้ URL ปลอมหรือ example.com เด็ดขาด",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=คุณคือ \"AI Business News Daily Analyst\" ผู้เชี่ยวชาญด้านการวิเคราะห์และสรุปข่าวสารธุรกิจ\n\nบทบาทและเป้าหมาย:\nทำหน้าที่สืบค้น วิเคราะห์ และสรุปข่าวสารธุรกิจภาษาไทยที่กระชับ ชัดเจน ตรงไปตรงมา และจัดรูปแบบให้อ่านง่ายบนแอปพลิเคชัน LINE โดยตรง\n\n---\nกฎการประมวลผลและการตอบกลับ:\n1. การสืบค้นและคัดกรองข่าว (Search & Selection):\n   - ค้นหาข่าวล่าสุดที่เกี่ยวข้องกับข้อความค้นหาของผู้ใช้ โดยคัดเลือกเฉพาะข่าวที่มีอายุไม่เกิน 24 ชั่วโมง\n   - สรุปเฉพาะข่าวที่สำคัญที่สุดจำนวน 3 ข่าว (หากมีหลายสำนักรายงานเหตุการณ์เดียวกัน ให้สังเคราะห์รวมเป็นข่าวเดียว)\n  \n\n2. โทนภาษาและสาระสำคัญ:\n   - ภาษาไทยล้วน สุภาพ เป็นกลาง และเป็นมืออาชีพ\n   - เน้นข้อเท็จจริง ตัวเลข สาระสำคัญ นโยบาย และผลกระทบเชิงธุรกิจ โดยไม่ใส่ความคิดเห็นส่วนตัว\n   - อธิบายสั้นกระชับ เข้าใจง่าย ภายใน 2-3 ประโยคต่อข่าว\n\n3. กรณีผู้ใช้ทักทายหรือถามคำถามทั่วไป:\n   - ตอบรับอย่างสุภาพ เป็นมิตร และแจ้งว่าพร้อมช่วยสืบค้นหรือสรุปข่าวประจำวันให้ทันที\n\n---\nข้อกำหนดด้านรูปแบบข้อความสำหรับ LINE (Strict Formatting):\n- แบ่งเนื้อหาเป็นส่วนสั้นๆ ให้อ่านง่ายบนหน้าจอมือถือ\n- เว้นบรรทัดระหว่างแต่ละหัวข้อข่าวอย่างชัดเจน\n- ใช้อีโมจิประกอบหัวข้อเพื่อความสบายตา\n- ข้อห้ามเด็ดขาด: ห้ามใช้สัญลักษณ์ Markdown ทุกชนิด เช่น ดอกจัน (*), สัญลักษณ์ชาร์ป (#, ##), ขีดกลางคู่ (__), หรือเส้นคั่น/ตาราง ให้ใช้เพียงข้อความธรรมดาและการขึ้นบรรทัดใหม่เท่านั้น\n\n---\nโครงสร้างข้อความที่ใช้ส่ง (Template):\n\n📊 สรุปภาพรวมข่าวธุรกิจวันนี้\n(สรุปประเด็นสำคัญและทิศทางภาพรวม 1-2 ประโยค)\n\n\nหัวข้อ: (หัวข้อข่าวที่ 1 สั้น กระชับ)\nสรุป: (เนื้อหาสำคัญและผลกระทบเชิงธุรกิจ 2-3 ประโยค)\nที่มา: (URL ข่าวต้นฉบับ)\n\n\nหัวข้อ: (หัวข้อข่าวที่ 2)\nสรุป: (เนื้อหาสำคัญและผลกระทบเชิงธุรกิจ 2-3 ประโยค)\nที่มา: (URL ข่าวต้นฉบับ)\n\n\nหัวข้อ: (หัวข้อข่าวที่ 3)\nสรุป: (เนื้อหาสำคัญและผลกระทบเชิงธุรกิจ 2-3 ประโยค)\nที่มา: (URL ข่าวต้นฉบับ)\n\n(กรณีใช้ Search Tool แล้วไม่พบข่าวในรอบ 24 ชั่วโมงที่ตรงกับคำค้นหา ให้ตอบว่า:\n📊 สรุปภาพรวมข่าวธุรกิจวันนี้\nไม่พบรายงานข่าวล่าสุดในรอบ 24 ชั่วโมงสำหรับหัวข้อนี้ แนะนำให้ลองเปลี่ยนคำค้นหา หรือเลือกดูข่าวเด่นประจำวันจากเมนูหลักครับ)",
+          "maxIterations": 5
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -5120,
+        3392
+      ],
+      "id": "63ba54ac-10e2-4477-be3b-ed67e7909217",
+      "name": "AI Agent",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// ดึง URL ทั้งหมดที่เคยบันทึกไว้ในชีต\nconst oldLogs = $('Get row(s) in sheet3').all();\nconst loggedUrls = oldLogs.map(item => item.json.Source_URLs || '').join(' ');\n\n// กรองเอาเฉพาะข่าวที่ URL ยังไม่เคยปรากฏในชีต\nconst freshNews = $input.all().filter(newsItem => {\n  const currentLink = newsItem.json.link || '';\n  return currentLink && !loggedUrls.includes(currentLink);\n});\n\nreturn freshNews;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1824,
+        2352
+      ],
+      "id": "2b38543b-ae91-4115-be08-ce110e6c29cc",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.line.me/v2/bot/message/reply",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 05K6MoubB4aakDLkFIgSwS2Fh5rESAR5Mb+NqL5D6dQddh/fyAB+yrHzMhV9tW1cFjLuWUKwSV2KHObb0JNXl2onGtYJdI8o0+ALLm8+Yxb7Qpyjej7IxkZPtzCLVBvwu9XTQohMpNLWyLQYXKCfZwdB04t89/1O/w1cDnyilFU="
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "=json",
+        "specifyBody": "json",
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "jsonBody": "={{\n(() => {\n  let raw = $json.output;\n  let parsedData = null;\n\n  // 1. ดึงและคลายก้อน JSON ที่ซ่อนอยู่ในสตริง\n  if (typeof raw === 'string') {\n    const jsonStartIndex = raw.indexOf('{');\n    if (jsonStartIndex !== -1) {\n      try {\n        parsedData = JSON.parse(raw.substring(jsonStartIndex));\n      } catch (e) {\n        const match = raw.match(/\\{[\\s\\S]*\\}/);\n        if (match) {\n          try { parsedData = JSON.parse(match[0]); } catch (err) {}\n        }\n      }\n    }\n  } else if (typeof raw === 'object') {\n    parsedData = raw;\n  }\n\n  // ปลดชั้น output\n  if (parsedData && parsedData.output) {\n    parsedData = parsedData.output;\n  }\n\n  let overview = \"สรุปประเด็นข่าวสารสำคัญล่าสุด\";\n  let decisionSummary = \"\";\n  let newsList = [];\n\n  // 2. ดึงรายการข่าว\n  if (parsedData && typeof parsedData === 'object') {\n    overview = parsedData.executive_summary || parsedData.overview || parsedData.summary || overview;\n    decisionSummary = parsedData.decision_summary || \"\";\n    const rawNews = parsedData.news || parsedData.topics || parsedData.news_items || [];\n    if (Array.isArray(rawNews)) {\n      newsList = rawNews.slice(0, 3).map((item, idx) => ({\n        title: item.title || `ข่าวที่ ${idx + 1}`,\n        summary: item.summary || item.business_impact_summary || item.description || '',\n        url: item.reference_url || item.source_url || item.link || item.url || null\n      }));\n    }\n  }\n\n  // ฟังก์ชันทำความสะอาดข้อความ\n  const clean = (str) => (str ? String(str).replace(/\\\\\"/g, '\"').replace(/\\\\n/g, ' ').trim() : '');\n  const userText = $('Webhook').item?.json?.body?.events?.[0]?.message?.text || \"ข่าวประจำวัน\";\n\n  // ฟังก์ชันตรวจสอบและจำกัดความยาว URL ไม่ให้เกิน 990 ตัวอักษร\n  const sanitizeUrl = (urlStr) => {\n    if (!urlStr || typeof urlStr !== 'string') return null;\n    let url = clean(urlStr);\n    if (!url.startsWith('http://') && !url.startsWith('https://')) return null;\n    return url.length > 990 ? url.substring(0, 990) : url;\n  };\n\n  // 3. สร้าง Components ข่าวสำหรับ Flex Message\n  const newsContents = [];\n\n  newsList.forEach((item, index) => {\n    const singleNews = [\n      {\n        type: \"text\",\n        text: `${index + 1}. ${clean(item.title)}`,\n        weight: \"bold\",\n        size: \"sm\",\n        color: \"#0F172A\",\n        wrap: true\n      }\n    ];\n\n    if (item.summary) {\n      singleNews.push({\n        type: \"text\",\n        text: clean(item.summary),\n        size: \"xs\",\n        color: \"#64748B\",\n        wrap: true,\n        margin: \"xs\"\n      });\n    }\n\n    const safeUrl = sanitizeUrl(item.url);\n    if (safeUrl) {\n      singleNews.push({\n        type: \"button\",\n        style: \"link\",\n        height: \"sm\",\n        margin: \"xs\",\n        action: {\n          type: \"uri\",\n          label: \"🔗 อ่านต่อฉบับเต็ม\",\n          uri: safeUrl\n        }\n      });\n    }\n\n    newsContents.push({\n      type: \"box\",\n      layout: \"vertical\",\n      spacing: \"none\",\n      margin: index === 0 ? \"none\" : \"lg\",\n      contents: singleNews\n    });\n\n    if (index < newsList.length - 1) {\n      newsContents.push({\n        type: \"separator\",\n        margin: \"lg\",\n        color: \"#E2E8F0\"\n      });\n    }\n  });\n\n  // 4. ส่งกลับ LINE Payload\n  return JSON.stringify({\n    replyToken: $('Webhook').item.json.body.events[0].replyToken,\n    messages: [\n      {\n        type: \"flex\",\n        altText: `สรุป${userText}`,\n        contents: {\n          type: \"bubble\",\n          size: \"mega\",\n          header: {\n            type: \"box\",\n            layout: \"vertical\",\n            backgroundColor: \"#0B132B\",\n            paddingAll: \"lg\",\n            contents: [\n              {\n                type: \"text\",\n                text: \"📊 DAILY NEWS BRIEF\",\n                weight: \"bold\",\n                color: \"#38BDF8\",\n                size: \"xs\"\n              },\n              {\n                type: \"text\",\n                text: userText.startsWith('สรุป') ? userText : `สรุป${userText}`,\n                weight: \"bold\",\n                color: \"#FFFFFF\",\n                size: \"lg\",\n                margin: \"xs\",\n                wrap: true\n              }\n            ]\n          },\n          body: {\n            type: \"box\",\n            layout: \"vertical\",\n            paddingAll: \"lg\",\n            contents: [\n              {\n                type: \"box\",\n                layout: \"vertical\",\n                backgroundColor: \"#F1F5F9\",\n                paddingAll: \"md\",\n                cornerRadius: \"md\",\n                contents: [\n                  {\n                    type: \"text\",\n                    text: \"🔹 ภาพรวมประจำวัน\",\n                    weight: \"bold\",\n                    size: \"xs\",\n                    color: \"#0284C7\"\n                  },\n                  {\n                    type: \"text\",\n                    text: clean(overview),\n                    size: \"xs\",\n                    color: \"#334155\",\n                    wrap: true,\n                    margin: \"xs\"\n                  },\n                  ...(decisionSummary ? [\n                    {\n                      type: \"text\",\n                      text: \"💡 ข้อเสนอแนะเชิงธุรกิจ\",\n                      weight: \"bold\",\n                      size: \"xs\",\n                      color: \"#D97706\",\n                      margin: \"md\"\n                    },\n                    {\n                      type: \"text\",\n                      text: clean(decisionSummary),\n                      size: \"xs\",\n                      color: \"#334155\",\n                      wrap: true,\n                      margin: \"xs\"\n                    }\n                  ] : [])\n                ]\n              },\n              {\n                type: \"separator\",\n                margin: \"lg\",\n                color: \"#E2E8F0\"\n              },\n              ...(newsContents.length > 0 ? newsContents : [\n                {\n                  type: \"text\",\n                  text: \"ไม่พบข้อมูลข่าวที่ตรงกับเงื่อนไข\",\n                  size: \"xs\",\n                  color: \"#64748B\",\n                  wrap: true\n                }\n              ])\n            ]\n          }\n        }\n      }\n    ]\n  });\n})()\n}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -3360,
+        2352
+      ],
+      "id": "4472abf3-bda3-48aa-977b-8063e016165a",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "maxItems": 5
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -2864,
+        1760
+      ],
+      "id": "60dab367-dff8-40e7-8e45-be9023e43fa5",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "maxItems": 5
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -4096,
+        2368
+      ],
+      "id": "16ccfe8c-214d-497a-8571-7f9d5b66750a",
+      "name": "Limit1"
+    },
+    {
+      "parameters": {
+        "maxItems": 5
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -1664,
+        2352
+      ],
+      "id": "eee8a0c4-6a9b-4f0a-b23c-2103dc2fb66f",
+      "name": "Limit2"
+    },
+    {
+      "parameters": {
+        "content": "Schedule Trigger ทำงานทุกๆ 6 ชั่วโมง ข่าวด่าน",
+        "height": 576,
+        "width": 2816
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -2768,
+        2320
+      ],
+      "id": "c0fca5be-4eb5-43bb-bab6-6133e0ec9688",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "Fallback ที่ผู้ใช้กรอกมาไม่ไม่เข้าหมวตหมู่ทั้ง 3",
+        "height": 528,
+        "width": 1456,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -4368,
+        2304
+      ],
+      "id": "d9ac653b-74f2-483e-b6ba-644337abe261",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "ผู้ใช้เลือกหมวดหมู่ข่าวหลัก",
+        "height": 736,
+        "width": 3136,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -4768,
+        1568
+      ],
+      "id": "ee3f8f87-d09d-40cf-b111-3283021ff156",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.line.me/v2/bot/message/reply",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 9iojeVBvGzT4kLWyJVQGU6lNBzVp1YpIruPGDIK/aRufvb/kGXKbbJzY0eaPY2ehFjxYYDg5taaYUZh6k0GE77HcvZkWS1cRfFzzb4BlOjJfvorwfflbqsPs0Igw1oCYeEUghHK4YbMQqtw7BK+8QQdB04t89/1O/w1cDnyilFU="
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "=json",
+        "specifyBody": "json",
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "jsonBody": "={{\n\nJSON.stringify({\n\n  replyToken: $('Webhook').item.json.body.events[0].replyToken,\n\n  messages: [\n\n    {\n\n      type: \"flex\",\n\n      altText: \"สรุปข่าวสำคัญประจำวัน\",\n\n      contents: {\n\n        type: \"bubble\",\n\n        header: {\n\n          type: \"box\",\n\n          layout: \"vertical\",\n\n          backgroundColor: \"#0F172A\",\n\n          paddingAll: \"lg\",\n\n          contents: [\n\n            {\n\n              type: \"text\",\n\n              text: \"📊 DAILY NEWS BRIEF\",\n\n              weight: \"bold\",\n\n              color: \"#38BDF8\",\n\n              size: \"xs\"\n\n            },\n\n            {\n\n              type: \"text\",\n\n              text: `สรุป${$('Webhook').item.json.body.events[0].message.text}`,\n\n              weight: \"bold\",\n\n              color: \"#FFFFFF\",\n\n              size: \"lg\",\n\n              margin: \"xs\"\n\n            }\n\n          ]\n\n        },\n\n        body: {\n\n          type: \"box\",\n\n          layout: \"vertical\",\n\n          spacing: \"md\",\n\n          contents: [\n\n            {\n\n              type: \"box\",\n\n              layout: \"vertical\",\n\n              backgroundColor: \"#F1F5F9\",\n\n              paddingAll: \"md\",\n\n              cornerRadius: \"md\",\n\n              contents: [\n\n                {\n\n                  type: \"text\",\n\n                  text: \"🔹 ภาพรวมประจำวัน\",\n\n                  weight: \"bold\",\n\n                  size: \"xs\",\n\n                  color: \"#334155\"\n\n                },\n\n                {\n\n                  type: \"text\",\n\n                  text: $json.output.overview || $json.output.executive_summary || \"ภาพรวมข่าวสารสำคัญในรอบวัน\",\n\n                  size: \"xs\",\n\n                  color: \"#475569\",\n\n                  wrap: true,\n\n                  margin: \"xs\"\n\n                }\n\n              ]\n\n            },\n\n            {\n\n              type: \"separator\"\n\n            },\n\n            ...($json.output.news || []).slice(0, 3).map((item, index) => ({\n\n              type: \"box\",\n\n              layout: \"vertical\",\n\n              spacing: \"xs\",\n\n              margin: \"sm\",\n\n              contents: [\n\n                {\n\n                  type: \"text\",\n\n                  text: `${index + 1}. ${item.title}`,\n\n                  weight: \"bold\",\n\n                  size: \"sm\",\n\n                  color: \"#0F172A\",\n\n                  wrap: true\n\n                },\n\n                {\n\n                  type: \"text\",\n\n                  text: item.summary,\n\n                  size: \"xs\",\n\n                  color: \"#64748B\",\n\n                  wrap: true\n\n                },\n\n                {\n\n                  type: \"button\",\n\n                  style: \"link\",\n\n                  height: \"sm\",\n\n                  action: {\n\n                    type: \"uri\",\n\n                    label: \"🔗 อ่านต่อฉบับเต็ม\",\n\n                    uri: item.link || item.reference_url || \"https://news.google.com\"\n\n                  }\n\n                }\n\n              ]\n\n            }))\n\n          ]\n\n        }\n\n      }\n\n    }\n\n  ]\n\n})\n\n}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -4576,
+        0
+      ],
+      "id": "fcfd8155-efb5-4c34-8c8e-e6c134500c2d",
+      "name": "HTTP Request7",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=ต่อไปนี้คือรายการข่าวจากหลายแหล่งประจำวันนี้ โดยข้อมูลแต่ละข่าวจะประกอบด้วย title, image_url และ link\n\nงานของคุณคือ:\n1. วิเคราะห์และคัดกรองเนื้อหาข่าวทั้งหมดที่ได้รับ\n2. คัดเลือกข่าวที่น่าสนใจที่สุดจำนวน 3 ข่าวไม่น้อยกว่านี้\n3. จัดหมวดหมู่ข่าวแต่ละข่าวให้อยู่ใน 1 จาก 3 หมวดหมู่นี้เท่านั้น:\n   - การเมือง\n   - เศรษฐกิจ\n   - เทคโนโลยี\n4. สรุปประเด็นเนื้อหาของแต่ละข่าวให้กระชับและได้ใจความ เหมาะสำหรับอ่านผ่าน LINE และดึงภาพจริงจากข่าวมาแสดง\n5. ส่งผลลัพธ์เป็นโครงสร้าง JSON ตามข้อกำหนดที่ระบุไว้ใน System Prompt อย่างเคร่งครัด\n\nรายการข่าว:\n---\n{{\n  $json.data \n    ? $json.data.map(d => `title: ${d.title}\\nimage_url: ${d.enclosure?.url ?? ''}\\nlink: ${d.link}`).join('\\n\\n')\n    : `title: ${$json.title}\\nimage_url: ${$json.enclosure?.url ?? ''}\\nlink: ${$json.link}`\n}}\n---\n⚠️ รายการข่าวที่เคยส่งไปแล้วล่าสุด (ห้ามเลือกซ้ำ):\n",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=คุณคือ \"AI Business News Daily Analyst\" ผู้เชี่ยวชาญด้านการวิเคราะห์และสรุปข่าวสารธุรกิจ\n\nตอบเป็นภาษาไทย กระชับ ชัดเจน ตรงประเด็น และจัดรูปแบบให้อ่านง่ายบน LINE โดยตรง\n\nกฎการสนทนาและการตอบกลับ\n\nวิเคราะห์และคัดเลือกข่าวที่สำคัญที่สุดจำนวน 3 - 5 ข่าว\n\nจัดหมวดหมู่ข่าวออกเป็น: การเมือง | เศรษฐกิจ | เทคโนโลยี\n\nหากมีหลายสำนักรายงานเหตุการณ์เดียวกัน ให้สังเคราะห์เป็นข่าวเดียว\n\nโทนภาษา: สุภาพ เป็นกลาง เน้นข้อเท็จจริง ตัวเลข นโยบาย และผลกระทบต่อธุรกิจ โดยไม่ใส่ความเห็นส่วนตัว\n\nกรณีผู้ใช้ทักทายหรือถามคำถามทั่วไป ให้ตอบรับอย่างสุภาพและพร้อมสรุปข่าวประจำวันให้ทันที\n\nรูปแบบคำตอบสำหรับ LINE\n\nแบ่งเนื้อหาเป็นส่วนสั้นๆ ให้อ่านง่ายบนหน้าจอมือถือ\n\nห้ามใช้ Markdown Formatting เช่น , *, #, ## หรือตาราง\n\nเว้นบรรทัดระหว่างแต่ละหัวข้อข่าวอย่างชัดเจน\n\nใช้อีโมจิประกอบหัวข้อเพื่อความสบายตา\n\nโครงสร้างข้อความที่ใช้ส่ง:\n\n📊 สรุปภาพรวมข่าวธุรกิจวันนี้\n(สรุปประเด็นสำคัญและทิศทางภาพรวม 1-2 ประโยค)\n\n📰 [หมวดหมู่: การเมือง / เศรษฐกิจ / เทคโนโลยี]\nหัวข้อ: (หัวข้อข่าวที่ 1 สั้น กระชับ และรูปภาพ)\nสรุป: (เนื้อหาสำคัญและผลกระทบเชิงธุรกิจ 2-3 ประโยค)\n\nที่มา: (URL ข่าวต้นฉบับ)\n\n📰 [หมวดหมู่: การเมือง / เศรษฐกิจ / เทคโนโลยี]\nหัวข้อ: (หัวข้อข่าวที่ 2 และรูปภาพ)\nสรุป: (เนื้อหาสำคัญและผลกระทบเชิงธุรกิจ 2-3 ประโยค)\nที่มา: (URL ข่าวต้นฉบับ)\n\n📰 [หมวดหมู่: การเมือง / เศรษฐกิจ / เทคโนโลยี]\nหัวข้อ: (หัวข้อข่าวที่ 3 และรูปภาพ)\nสรุป: (เนื้อหาสำคัญและผลกระทบเชิงธุรกิจ 2-3 ประโยค)\nที่มา: (URL ข่าวต้นฉบับ)\n\n💡 สรุปสารสนเทศเพื่อสนับสนุนการตัดสินใจทางธุรกิจ\n(สรุปข้อเสนอแนะเชิงกลยุทธ์ การบริหารต้นทุน โอกาสทางการตลาด หรือความเสี่ยงที่ผู้บริหารและผู้ประกอบการควรเตรียมรับมือ 2-4 ข้อ โดยแบ่งเป็นข้อๆ ชัดเจน)",
+          "maxIterations": 5
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -4576,
+        448
+      ],
+      "id": "e5428280-68ef-4da8-ae2d-18f9a73606ce",
+      "name": "AI Agent4",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.line.me/v2/bot/message/reply",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 9iojeVBvGzT4kLWyJVQGU6lNBzVp1YpIruPGDIK/aRufvb/kGXKbbJzY0eaPY2ehFjxYYDg5taaYUZh6k0GE77HcvZkWS1cRfFzzb4BlOjJfvorwfflbqsPs0Igw1oCYeEUghHK4YbMQqtw7BK+8QQdB04t89/1O/w1cDnyilFU="
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "=json",
+        "specifyBody": "json",
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "jsonBody": "={{\n(() => {\n  // ดึงข้อมูลจาก AI Agent1\n  let data = $json.output;\n\n  // แปลง String เป็น Object ในกรณีที่ AI ส่งมาเป็น JSON Text\n  if (typeof data === 'string') {\n    try {\n      data = JSON.parse(data);\n    } catch (e) {\n      data = {};\n    }\n  }\n\n  if (data && data.output && typeof data.output === 'object') {\n    data = data.output;\n  }\n\n  // ดึงค่าภาพรวมและรายการข่าวอย่างปลอดภัย\n  const overview = data?.overview || data?.executive_summary || \"ภาพรวมข่าวสารสำคัญในรอบวัน\";\n  const newsList = Array.isArray(data?.news) ? data.news : (Array.isArray(data?.topics) ? data.topics : []);\n  const decisionSummary = data?.business_impact || data?.decision_summary || data?.business_decision_summary || \"ผู้บริหารและผู้ประกอบการควรติดตามแนวโน้มตลาดอย่างใกล้ชิดและวางแผนบริหารจัดการความเสี่ยงเชิงรุก\";\n\n  const userQuery = $('Webhook').item?.json?.body?.events?.[0]?.message?.text || \"ข่าวประจำวัน\";\n  const token = $('Webhook').item?.json?.body?.events?.[0]?.replyToken || \"\";\n\n  return JSON.stringify({\n    replyToken: token,\n    messages: [\n      {\n        type: \"flex\",\n        altText: \"สรุปข่าวสำคัญประจำวัน\",\n        contents: {\n          type: \"bubble\",\n          header: {\n            type: \"box\",\n            layout: \"vertical\",\n            backgroundColor: \"#0F172A\",\n            paddingAll: \"lg\",\n            contents: [\n              {\n                type: \"text\",\n                text: \"📊 DAILY NEWS BRIEF\",\n                weight: \"bold\",\n                color: \"#38BDF8\",\n                size: \"xs\"\n              },\n              {\n                type: \"text\",\n                text: \"สรุป\" + userQuery,\n                weight: \"bold\",\n                color: \"#FFFFFF\",\n                size: \"lg\",\n                margin: \"xs\"\n              }\n            ]\n          },\n          body: {\n            type: \"box\",\n            layout: \"vertical\",\n            spacing: \"md\",\n            contents: [\n              {\n                type: \"box\",\n                layout: \"vertical\",\n                backgroundColor: \"#F1F5F9\",\n                paddingAll: \"md\",\n                cornerRadius: \"md\",\n                contents: [\n                  {\n                    type: \"text\",\n                    text: \"🔹 ภาพรวมประจำวัน\",\n                    weight: \"bold\",\n                    size: \"xs\",\n                    color: \"#334155\"\n                  },\n                  {\n                    type: \"text\",\n                    text: overview,\n                    size: \"xs\",\n                    color: \"#475569\",\n                    wrap: true,\n                    margin: \"xs\"\n                  }\n                ]\n              },\n              {\n                type: \"separator\"\n              },\n              ...newsList.slice(0, 3).map((item, index) => {\n                const imgUrl = item.image_url || item.image || item.thumbnail || null;\n                const itemContents = [];\n\n                if (imgUrl && String(imgUrl).startsWith('http')) {\n                  itemContents.push({\n                    type: \"image\",\n                    url: imgUrl,\n                    size: \"full\",\n                    aspectRatio: \"20:13\",\n                    aspectMode: \"cover\",\n                    cornerRadius: \"md\",\n                    margin: \"xs\"\n                  });\n                }\n\n                itemContents.push(\n                  {\n                    type: \"text\",\n                    text: `${index + 1}. ${item.title || 'หัวข้อข่าว'}`,\n                    weight: \"bold\",\n                    size: \"sm\",\n                    color: \"#0F172A\",\n                    wrap: true,\n                    margin: (imgUrl && String(imgUrl).startsWith('http')) ? \"sm\" : \"xs\"\n                  },\n                  {\n                    type: \"text\",\n                    text: item.summary || item.description || \"ไม่มีเนื้อหาโดยย่อ\",\n                    size: \"xs\",\n                    color: \"#64748B\",\n                    wrap: true\n                  },\n                  {\n                    type: \"button\",\n                    style: \"link\",\n                    height: \"sm\",\n                    action: {\n                      type: \"uri\",\n                      label: \"🔗 อ่านต่อฉบับเต็ม\",\n                      uri: item.link || item.reference_url || \"https://news.google.com\"\n                    }\n                  }\n                );\n\n                return {\n                  type: \"box\",\n                  layout: \"vertical\",\n                  spacing: \"xs\",\n                  margin: \"sm\",\n                  contents: itemContents\n                };\n              }),\n              {\n                type: \"separator\",\n                margin: \"md\"\n              },\n              {\n                type: \"box\",\n                layout: \"vertical\",\n                backgroundColor: \"#EFF6FF\",\n                paddingAll: \"md\",\n                cornerRadius: \"md\",\n                margin: \"sm\",\n                contents: [\n                  {\n                    type: \"text\",\n                    text: \"💡 สรุปเพื่อสนับสนุนการตัดสินใจทางธุรกิจ\",\n                    weight: \"bold\",\n                    size: \"xs\",\n                    color: \"#1D4ED8\"\n                  },\n                  {\n                    type: \"text\",\n                    text: decisionSummary,\n                    size: \"xs\",\n                    color: \"#1E293B\",\n                    wrap: true,\n                    margin: \"xs\"\n                  }\n                ]\n              }\n            ]\n          }\n        }\n      }\n    ]\n  });\n})()\n}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -4576,
+        3152
+      ],
+      "id": "18c74138-726b-40b4-b123-a0c084aa252e",
+      "name": "HTTP Request8",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"executive_summary\": \"สรุปภาพรวมข่าวสำคัญของวันนี้\",\n  \"news\": [\n    {\n      \"title\": \"ชื่อข่าวที่ 1\",\n      \"date\": \"21 กรกฎาคม 2569\",\n      \"category\": \"เศรษฐกิจ\",\n      \"summary\": \"สรุปข่าวโดยย่อ\",\n      \"image_url\": \"\",\n      \"reference_url\": \"https://example.com/news1\"\n    },\n    {\n      \"title\": \"ชื่อข่าวที่ 2\",\n      \"date\": \"21 กรกฎาคม 2569\",\n      \"category\": \"การเมือง\",\n      \"summary\": \"สรุปข่าวโดยย่อ\",\n      \"image_url\": \"\",\n      \"reference_url\": \"https://example.com/news2\"\n    },\n    {\n      \"title\": \"ชื่อข่าวที่ 3\",\n      \"date\": \"21 กรกฎาคม 2569\",\n      \"category\": \"เทคโนโลยี\",\n      \"summary\": \"สรุปข่าวโดยย่อ\",\n      \"image_url\": \"\",\n      \"reference_url\": \"https://example.com/news3\"\n    },\n    {\n      \"title\": \"ชื่อข่าวที่ 2\",\n      \"date\": \"21 กรกฎาคม 2569\",\n      \"category\": \"การเมือง\",\n      \"summary\": \"สรุปข่าวโดยย่อ\",\n      \"image_url\": \"\",\n      \"reference_url\": \"https://example.com/news2\"\n    },\n    {\n      \"title\": \"ชื่อข่าวที่ 3\",\n      \"date\": \"21 กรกฎาคม 2569\",\n      \"category\": \"เทคโนโลยี\",\n      \"summary\": \"สรุปข่าวโดยย่อ\",\n      \"image_url\": \"\",\n      \"reference_url\": \"https://example.com/news3\"\n    }\n  ]\n}",
+        "autoFix": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        -4576,
+        3376
+      ],
+      "id": "f76069e6-3305-44a6-8e04-74415bae5a41",
+      "name": "Structured Output Parser",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=ผู้ใช้ต้องการสืบค้นข่าวเกี่ยวกับ: \"{{ $('Webhook').item.json.body.events[0].message.text }}\"\n\n⚠️ รายการข่าวที่เคยส่งไปแล้วล่าสุด (ห้ามเลือกซ้ำ):\n{{ $('Get row(s) in sheet1').all().slice(-10).map(r => r.json.Topic_Query || r.json.Source_URLs).filter(Boolean).join('\\n') }}\n---\n\nคำสั่งการทำงาน:\n1. ใช้เครื่องมือสืบค้น (Search Tool: Tavily) ค้นหาข่าวล่าสุดที่ตรงกับหัวข้อที่ผู้ใช้สอบถาม\n2. ตรวจสอบผลการค้นหา: ห้ามเลือกข่าวที่มี URL ตรงกับ หรือมีเนื้อหา/เหตุการณ์เดียวกับ \"รายการข่าวที่เคยส่งไปแล้ว\" ข้างต้นอย่างเด็ดขาด\n3. คัดเลือกเฉพาะข่าวใหม่ที่น่าสนใจที่สุด 3 ข่าว แล้วสรุปประเด็นสาระสำคัญให้กระชับ ชัดเจน พร้อมระบุลิงก์อ้างอิงของแต่ละข่าว\n4. วิเคราะห์ข้อเสนอแนะเชิงกลยุทธ์เพื่อสนับสนุนการตัดสินใจทางธุรกิจ (decision_summary)\n",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=คุณคือ \"AI Business News Daily Analyst\" ผู้เชี่ยวชาญด้านการวิเคราะห์และสรุปข่าวสารธุรกิจ\n\nบทบาทและเป้าหมาย:\nทำหน้าที่สืบค้น วิเคราะห์ และสรุปข่าวสารธุรกิจภาษาไทยที่กระชับ ชัดเจน ตรงไปตรงมา และจัดรูปแบบให้อ่านง่ายบนแอปพลิเคชัน LINE โดยตรง\nคุณคือ AI ผู้ช่วยสรุปข่าวสารเฉพาะกิจ (On-Demand News Analyst)\n\nกฎการทำงานอย่างเคร่งครัด:\n- ตรวจสอบให้แน่ใจว่า JSON ที่ส่งออกมาถูกต้องสมบูรณ์ทุกครั้ง \nโดยเฉพาะการปิด array ด้วย ] ก่อนปิด object ด้วย } เสมอ\n- ตรวจสอบรายการข่าวที่เคยเผยแพร่ไปแล้วเสมอ หากข่าวที่ค้นพบจาก Search Tool มี URL หรือประเด็นซ้ำกับประวัติเดิม ให้คัดทิ้งทันที และเลือกข่าวอื่นที่มีความสดใหม่กว่า\n- หากสืบค้นแล้วพบแต่ข่าวเดิมที่เคยส่งไปแล้ว ให้ค้นหาประเด็นความคืบหน้าล่าสุด (Follow-up News) แทนการรายงานเหตุการณ์เดิม\n---\nกฎการประมวลผลและการตอบกลับ:\n1. การสืบค้นและคัดกรองข่าว (Search & Selection):\n   - ค้นหาข่าวล่าสุดที่เกี่ยวข้องกับข้อความค้นหาของผู้ใช้ โดยคัดเลือกเฉพาะข่าวที่มีอายุไม่เกิน 24 ชั่วโมง\n   - สรุปเฉพาะข่าวที่สำคัญที่สุดจำนวน 3 ข่าว (หากมีหลายสำนักรายงานเหตุการณ์เดียวกัน ให้สังเคราะห์รวมเป็นข่าวเดียว)\n  \n\n2. โทนภาษาและสาระสำคัญ:\n   - ภาษาไทยล้วน สุภาพ เป็นกลาง และเป็นมืออาชีพ\n   - เน้นข้อเท็จจริง ตัวเลข สาระสำคัญ นโยบาย และผลกระทบเชิงธุรกิจ โดยไม่ใส่ความคิดเห็นส่วนตัว\n   - อธิบายสั้นกระชับ เข้าใจง่าย ภายใน 2-3 ประโยคต่อข่าว\n\n3. กรณีผู้ใช้ทักทายหรือถามคำถามทั่วไป:\n   - ตอบรับอย่างสุภาพ เป็นมิตร และแจ้งว่าพร้อมช่วยสืบค้นหรือสรุปข่าวประจำวันให้ทันที\n\n---\nข้อกำหนดด้านรูปแบบข้อความสำหรับ LINE (Strict Formatting):\n- แบ่งเนื้อหาเป็นส่วนสั้นๆ ให้อ่านง่ายบนหน้าจอมือถือ\n- เว้นบรรทัดระหว่างแต่ละหัวข้อข่าวอย่างชัดเจน\n- ใช้อีโมจิประกอบหัวข้อเพื่อความสบายตา\n- ข้อห้ามเด็ดขาด: ห้ามใช้สัญลักษณ์ Markdown ทุกชนิด เช่น ดอกจัน (*), สัญลักษณ์ชาร์ป (#, ##), ขีดกลางคู่ (__), หรือเส้นคั่น/ตาราง ให้ใช้เพียงข้อความธรรมดาและการขึ้นบรรทัดใหม่เท่านั้น\n\n---\nโครงสร้างข้อความที่ใช้ส่ง (Template):\n\n📊 สรุปภาพรวมข่าวธุรกิจวันนี้\n(สรุปประเด็นสำคัญและทิศทางภาพรวม 1-2 ประโยค)\n\n\n{\n  \"output\": {\n    \"executive_summary\": \"สรุปภาพรวมข่าววันนี้ 1-2 ประโยค\",\n    \"news\": [\n      {\n        \"title\": \"หัวข้อข่าวสั้นๆ\",\n        \"summary\": \"สรุปเนื้อหา 2-3 ประโยค\",\n        \"reference_url\": \"https://...\"\n      }\n    ]\n  }\n}\n\n(กรณีใช้ Search Tool แล้วไม่พบข่าวในรอบ 24 ชั่วโมงที่ตรงกับคำค้นหา ให้ตอบว่า:\n📊 สรุปภาพรวมข่าวธุรกิจวันนี้\nไม่พบรายงานข่าวล่าสุดในรอบ 24 ชั่วโมงสำหรับหัวข้อนี้ แนะนำให้ลองเปลี่ยนคำค้นหา หรือเลือกดูข่าวเด่นประจำวันจากเมนูหลักครับ)",
+          "maxIterations": 5
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -5968,
+        2704
+      ],
+      "id": "112801bc-0379-45b4-aa59-8cfa8df7063a",
+      "name": "AI Agent5",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"executive_summary\": \"สรุปภาพรวมข่าวสำคัญของวันนี้\",\n  \"news\": [\n    {\n      \"title\": \"ชื่อข่าวที่ 1\",\n      \"date\": \"21 กรกฎาคม 2569\",\n      \"category\": \"เศรษฐกิจ\",\n      \"summary\": \"สรุปข่าวโดยย่อ\",\n      \"image_url\": \"\",\n      \"reference_url\": \"https://example.com/news1\"\n    },\n    {\n      \"title\": \"ชื่อข่าวที่ 2\",\n      \"date\": \"21 กรกฎาคม 2569\",\n      \"category\": \"การเมือง\",\n      \"summary\": \"สรุปข่าวโดยย่อ\",\n      \"image_url\": \"\",\n      \"reference_url\": \"https://example.com/news2\"\n    },\n    {\n      \"title\": \"ชื่อข่าวที่ 3\",\n      \"date\": \"21 กรกฎาคม 2569\",\n      \"category\": \"เทคโนโลยี\",\n      \"summary\": \"สรุปข่าวโดยย่อ\",\n      \"image_url\": \"\",\n      \"reference_url\": \"https://example.com/news3\"\n    },\n    {\n      \"title\": \"ชื่อข่าวที่ 2\",\n      \"date\": \"21 กรกฎาคม 2569\",\n      \"category\": \"การเมือง\",\n      \"summary\": \"สรุปข่าวโดยย่อ\",\n      \"image_url\": \"\",\n      \"reference_url\": \"https://example.com/news2\"\n    },\n    {\n      \"title\": \"ชื่อข่าวที่ 3\",\n      \"date\": \"21 กรกฎาคม 2569\",\n      \"category\": \"เทคโนโลยี\",\n      \"summary\": \"สรุปข่าวโดยย่อ\",\n      \"image_url\": \"\",\n      \"reference_url\": \"https://example.com/news3\"\n    }\n  ]\n}",
+        "autoFix": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        -5120,
+        3616
+      ],
+      "id": "97c39492-2de3-4f7c-b52b-16276824da67",
+      "name": "Structured Output Parser4",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.line.me/v2/bot/message/reply",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 9iojeVBvGzT4kLWyJVQGU6lNBzVp1YpIruPGDIK/aRufvb/kGXKbbJzY0eaPY2ehFjxYYDg5taaYUZh6k0GE77HcvZkWS1cRfFzzb4BlOjJfvorwfflbqsPs0Igw1oCYeEUghHK4YbMQqtw7BK+8QQdB04t89/1O/w1cDnyilFU="
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "=json",
+        "specifyBody": "json",
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "jsonBody": "={{\n(() => {\n  let raw = $json.output;\n  let parsedData = null;\n\n  // 1. ดึงและคลายก้อน JSON ที่ซ่อนอยู่ในสตริง\n  if (typeof raw === 'string') {\n    const jsonStartIndex = raw.indexOf('{');\n    if (jsonStartIndex !== -1) {\n      try {\n        parsedData = JSON.parse(raw.substring(jsonStartIndex));\n      } catch (e) {\n        const match = raw.match(/\\{[\\s\\S]*\\}/);\n        if (match) {\n          try { parsedData = JSON.parse(match[0]); } catch (err) {}\n        }\n      }\n    }\n  } else if (typeof raw === 'object') {\n    parsedData = raw;\n  }\n\n  // ปลดชั้น output\n  if (parsedData && parsedData.output) {\n    parsedData = parsedData.output;\n  }\n\n  let overview = \"สรุปประเด็นข่าวสารสำคัญล่าสุด\";\n  let newsList = [];\n\n  // 2. ดึงรายการข่าว\n  if (parsedData && typeof parsedData === 'object') {\n    overview = parsedData.executive_summary || parsedData.overview || parsedData.summary || overview;\n    const rawNews = parsedData.news || parsedData.topics || parsedData.news_items || [];\n    if (Array.isArray(rawNews)) {\n      newsList = rawNews.slice(0, 3).map((item, idx) => ({\n        title: item.title || `ข่าวที่ ${idx + 1}`,\n        summary: item.summary || item.business_impact_summary || item.description || '',\n        url: item.reference_url || item.source_url || item.link || item.url || null\n      }));\n    }\n  }\n\n  // ฟังก์ชันทำความสะอาดข้อความ\n  const clean = (str) => (str ? String(str).replace(/\\\\\"/g, '\"').replace(/\\\\n/g, ' ').trim() : '');\n  const userText = $('Webhook').item?.json?.body?.events?.[0]?.message?.text || \"ข่าวประจำวัน\";\n\n  // ฟังก์ชันตรวจสอบและจำกัดความยาว URL ไม่ให้เกิน 990 ตัวอักษร\n  const sanitizeUrl = (urlStr) => {\n    if (!urlStr || typeof urlStr !== 'string') return null;\n    let url = clean(urlStr);\n    if (!url.startsWith('http://') && !url.startsWith('https://')) return null;\n    return url.length > 990 ? url.substring(0, 990) : url;\n  };\n\n  // 3. สร้าง Components ข่าวสำหรับ Flex Message\n  const newsContents = [];\n\n  newsList.forEach((item, index) => {\n    const singleNews = [\n      {\n        type: \"text\",\n        text: `${index + 1}. ${clean(item.title)}`,\n        weight: \"bold\",\n        size: \"sm\",\n        color: \"#0F172A\",\n        wrap: true\n      }\n    ];\n\n    if (item.summary) {\n      singleNews.push({\n        type: \"text\",\n        text: clean(item.summary),\n        size: \"xs\",\n        color: \"#64748B\",\n        wrap: true,\n        margin: \"xs\"\n      });\n    }\n\n    const safeUrl = sanitizeUrl(item.url);\n    if (safeUrl) {\n      singleNews.push({\n        type: \"button\",\n        style: \"link\",\n        height: \"sm\",\n        margin: \"xs\",\n        action: {\n          type: \"uri\",\n          label: \"🔗 อ่านต่อฉบับเต็ม\",\n          uri: safeUrl\n        }\n      });\n    }\n\n    newsContents.push({\n      type: \"box\",\n      layout: \"vertical\",\n      spacing: \"none\",\n      margin: index === 0 ? \"none\" : \"lg\",\n      contents: singleNews\n    });\n\n    if (index < newsList.length - 1) {\n      newsContents.push({\n        type: \"separator\",\n        margin: \"lg\",\n        color: \"#E2E8F0\"\n      });\n    }\n  });\n\n  // 4. ส่งกลับ LINE Payload\n  return JSON.stringify({\n    replyToken: $('Webhook').item.json.body.events[0].replyToken,\n    messages: [\n      {\n        type: \"flex\",\n        altText: `สรุป${userText}`,\n        contents: {\n          type: \"bubble\",\n          size: \"mega\",\n          header: {\n            type: \"box\",\n            layout: \"vertical\",\n            backgroundColor: \"#0B132B\",\n            paddingAll: \"lg\",\n            contents: [\n              {\n                type: \"text\",\n                text: \"📊 DAILY NEWS BRIEF\",\n                weight: \"bold\",\n                color: \"#38BDF8\",\n                size: \"xs\"\n              },\n              {\n                type: \"text\",\n                text: userText.startsWith('สรุป') ? userText : `สรุป${userText}`,\n                weight: \"bold\",\n                color: \"#FFFFFF\",\n                size: \"lg\",\n                margin: \"xs\",\n                wrap: true\n              }\n            ]\n          },\n          body: {\n            type: \"box\",\n            layout: \"vertical\",\n            paddingAll: \"lg\",\n            contents: [\n              {\n                type: \"box\",\n                layout: \"vertical\",\n                backgroundColor: \"#F1F5F9\",\n                paddingAll: \"md\",\n                cornerRadius: \"md\",\n                contents: [\n                  {\n                    type: \"text\",\n                    text: \"🔹 ภาพรวมประจำวัน\",\n                    weight: \"bold\",\n                    size: \"xs\",\n                    color: \"#0284C7\"\n                  },\n                  {\n                    type: \"text\",\n                    text: clean(overview),\n                    size: \"xs\",\n                    color: \"#334155\",\n                    wrap: true,\n                    margin: \"xs\"\n                  }\n                ]\n              },\n              {\n                type: \"separator\",\n                margin: \"lg\",\n                color: \"#E2E8F0\"\n              },\n              ...(newsContents.length > 0 ? newsContents : [\n                {\n                  type: \"text\",\n                  text: \"ไม่พบข้อมูลข่าวที่ตรงกับเงื่อนไข\",\n                  size: \"xs\",\n                  color: \"#64748B\",\n                  wrap: true\n                }\n              ])\n            ]\n          }\n        }\n      }\n    ]\n  });\n})()\n}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -5712,
+        3296
+      ],
+      "id": "166c859e-623c-4037-bbfe-0f87146f0632",
+      "name": "HTTP Request1",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.line.me/v2/bot/message/push",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 9iojeVBvGzT4kLWyJVQGU6lNBzVp1YpIruPGDIK/aRufvb/kGXKbbJzY0eaPY2ehFjxYYDg5taaYUZh6k0GE77HcvZkWS1cRfFzzb4BlOjJfvorwfflbqsPs0Igw1oCYeEUghHK4YbMQqtw7BK+8QQdB04t89/1O/w1cDnyilFU="
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "=json",
+        "specifyBody": "json",
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "jsonBody": "={{\nJSON.stringify({\n  \"to\": \"U9934a296a1e495b53dbaf2153fe91fd5\",\n  \"messages\": [\n    {\n      \"type\": \"text\",\n      \"text\": \"🔔 อัปเดตข่าวด่วนรอบ 6 ชั่วโมง\\n\" + \n        ($json.output?.executive_summary || \"\") + \"\\n\\n\" + \n        ($json.output?.news || []).map((item, index) => \n          \"⚡ \" + (index + 1) + \". \" + item.title + \n          \"\\n- สาระสำคัญ:\\n\" + item.summary + \n          \"\\n- ที่มา: \" + item.reference_url\n        ).join(\"\\n\\n\") + \n        ($json.output?.decision_summary ? \"\\n\\n💡 สรุปเพื่อสนับสนุนการตัดสินใจทางธุรกิจ:\\n\" + $json.output.decision_summary : \"\")\n    }\n  ]\n})\n}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -5968,
+        2480
+      ],
+      "id": "b32ee5b4-44f4-493e-b582-9e9624951624",
+      "name": "HTTP Request5",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1QdJSTvuwZbynDulibau8KhgLmM_W5dNT4qkx8tRlbBM",
+          "mode": "list",
+          "cachedResultName": "n8n_news",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QdJSTvuwZbynDulibau8KhgLmM_W5dNT4qkx8tRlbBM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1370188854,
+          "mode": "list",
+          "cachedResultName": "n8n_news",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QdJSTvuwZbynDulibau8KhgLmM_W5dNT4qkx8tRlbBM/edit#gid=1370188854"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Log_ID": "={{ $execution.id }}",
+            "User_ID": "=admin",
+            "Topic_Query": "=ข่าวด่วนรอบ 6 ชม.",
+            "Timestamp": "={{ $now.setZone('Asia/Bangkok').toFormat('yyyy-MM-dd HH:mm:ss') }}",
+            "Summary_Result": "={{\n  ($('AI Agent3').item.json.output.news || []).map((item, index) => \n    `📌 Title ${index + 1}: ${item.title}\\n📝 ${item.summary}`\n  ).join('\\n\\n')\n}}",
+            "Status": "=Success",
+            "Source_URLs": "={{ ($('AI Agent3').item.json.output.news || []).map(n => n.reference_url || n.link).filter(Boolean).join(', ') }}",
+            "Decision_Summary": "={{ $('AI Agent3').item.json.output.decision_summary || '' }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Log_ID",
+              "displayName": "Log_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "User_ID",
+              "displayName": "User_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Topic_Query",
+              "displayName": "Topic_Query",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Timestamp",
+              "displayName": "Timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Summary_Result",
+              "displayName": "Summary_Result",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Source_URLs",
+              "displayName": "Source_URLs",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Decision_Summary",
+              "displayName": "Decision_Summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -576,
+        2352
+      ],
+      "id": "cbe9242a-3021-4787-b152-a78cd9696731",
+      "name": "Append row in sheet3",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "DjYSEhpYMwiJHaIJ",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.events[0].type }}",
+                    "rightValue": "follow",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "09dd7a6f-f34c-4fc0-b7a0-e3186ae99752"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "65f605b2-c4e2-40c6-846f-3b3cd5da8cd1",
+                    "leftValue": "={{ $json.body.events[0].type }}",
+                    "rightValue": "message",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        -4384,
+        1776
+      ],
+      "id": "bc536f5b-f986-4d15-9956-8f8be12b0539",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.line.me/v2/bot/message/push",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 05K6MoubB4aakDLkFIgSwS2Fh5rESAR5Mb+NqL5D6dQddh/fyAB+yrHzMhV9tW1cFjLuWUKwSV2KHObb0JNXl2onGtYJdI8o0+ALLm8+Yxb7Qpyjej7IxkZPtzCLVBvwu9XTQohMpNLWyLQYXKCfZwdB04t89/1O/w1cDnyilFU="
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{\nJSON.stringify({\n  to: $json.body.events[0].source.userId,\n  messages: [\n    {\n      type: \"text\",\n      text: \"ยินดีต้อนรับสู่ระบบสรุปข่าวประจำวันเพื่อสนับสนุนการตัดสินใจทางธุรกิจครับ 📊\\n\\nท่านสามารถพิมพ์ชื่อประเด็นที่สนใจ หรือเลือกอ่านสรุปข่าวเด่นประจำวันได้ทันที!\"\n    },\n    {\n      type: \"flex\",\n      altText: \"กรุณาเลือกหมวดหมู่ข่าวสาร\",\n      contents: {\n        type: \"bubble\",\n        header: {\n          type: \"box\",\n          layout: \"vertical\",\n          backgroundColor: \"#0F172A\",\n          paddingAll: \"lg\",\n          contents: [\n            {\n              type: \"text\",\n              text: \"📰 AI News Assistant\",\n              weight: \"bold\",\n              color: \"#38BDF8\",\n              size: \"md\"\n            },\n            {\n              type: \"text\",\n              text: \"เลือกหมวดหมู่ข่าวที่ต้องการอ่านสรุป:\",\n              color: \"#FFFFFF\",\n              size: \"xs\",\n              margin: \"xs\"\n            }\n          ]\n        },\n        body: {\n          type: \"box\",\n          layout: \"vertical\",\n          spacing: \"sm\",\n          contents: [\n            {\n              type: \"button\",\n              style: \"primary\",\n              color: \"#EF4444\",\n              height: \"sm\",\n              action: {\n                type: \"message\",\n                label: \"🏛️ ข่าวการเมือง\",\n                text: \"ข่าวการเมือง\"\n              }\n            },\n            {\n              type: \"button\",\n              style: \"primary\",\n              color: \"#F59E0B\",\n              height: \"sm\",\n              action: {\n                type: \"message\",\n                label: \"💼 ข่าวเศรษฐกิจ\",\n                text: \"ข่าวเศรษฐกิจ\"\n              }\n            },\n            {\n              type: \"button\",\n              style: \"primary\",\n              color: \"#3B82F6\",\n              height: \"sm\",\n              action: {\n                type: \"message\",\n                label: \"💻 ข่าวเทคโนโลยี\",\n                text: \"ข่าวเทคโนโลยี\"\n              }\n            }\n          ]\n        }\n      }\n    }\n  ]\n})\n}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -4624,
+        2240
+      ],
+      "id": "25b6f88a-6b56-472f-a21f-d20f42a63cd8",
+      "name": "HTTP Request ทักทาย"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1QdJSTvuwZbynDulibau8KhgLmM_W5dNT4qkx8tRlbBM",
+          "mode": "list",
+          "cachedResultName": "n8n_news",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QdJSTvuwZbynDulibau8KhgLmM_W5dNT4qkx8tRlbBM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1370188854,
+          "mode": "list",
+          "cachedResultName": "n8n_news",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QdJSTvuwZbynDulibau8KhgLmM_W5dNT4qkx8tRlbBM/edit#gid=1370188854"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -2816,
+        1280
+      ],
+      "id": "b2d40b74-bc22-456a-9cdd-5b86633f4c04",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "DjYSEhpYMwiJHaIJ",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.line.me/v2/bot/message/push",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 05K6MoubB4aakDLkFIgSwS2Fh5rESAR5Mb+NqL5D6dQddh/fyAB+yrHzMhV9tW1cFjLuWUKwSV2KHObb0JNXl2onGtYJdI8o0+ALLm8+Yxb7Qpyjej7IxkZPtzCLVBvwu9XTQohMpNLWyLQYXKCfZwdB04t89/1O/w1cDnyilFU="
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{\nJSON.stringify({\n  to: $json.User_ID,\n  messages: [\n    {\n      type: \"text\",\n      text: \"สวัสดีครับ! วันนี้มีข่าวสารและประเด็นธุรกิจที่น่าสนใจอัปเดตใหม่ 📊\\n\\nท่านสามารถกดเลือกดูหมวดหมู่ข่าวสารที่ต้องการอ่านสรุปผ่านปุ่มด้านล่างนี้ได้เลยนะครับ 👇\"\n    },\n    {\n      type: \"flex\",\n      altText: \"เลือกดูสรุปข่าวประจำวัน\",\n      contents: {\n        type: \"bubble\",\n        header: {\n          type: \"box\",\n          layout: \"vertical\",\n          backgroundColor: \"#0F172A\",\n          paddingAll: \"lg\",\n          contents: [\n            {\n              type: \"text\",\n              text: \"📰 AI News Assistant\",\n              weight: \"bold\",\n              color: \"#38BDF8\",\n              size: \"md\"\n            },\n            {\n              type: \"text\",\n              text: \"เลือกหมวดหมู่ข่าวที่ต้องการอ่านสรุป:\",\n              color: \"#FFFFFF\",\n              size: \"xs\",\n              margin: \"xs\"\n            }\n          ]\n        },\n        body: {\n          type: \"box\",\n          layout: \"vertical\",\n          spacing: \"sm\",\n          contents: [\n            {\n              type: \"button\",\n              style: \"primary\",\n              color: \"#EF4444\",\n              height: \"sm\",\n              action: {\n                type: \"message\",\n                label: \"🏛️ ข่าวการเมือง\",\n                text: \"ข่าวการเมือง\"\n              }\n            },\n            {\n              type: \"button\",\n              style: \"primary\",\n              color: \"#F59E0B\",\n              height: \"sm\",\n              action: {\n                type: \"message\",\n                label: \"💼 ข่าวเศรษฐกิจ\",\n                text: \"ข่าวเศรษฐกิจ\"\n              }\n            },\n            {\n              type: \"button\",\n              style: \"primary\",\n              color: \"#3B82F6\",\n              height: \"sm\",\n              action: {\n                type: \"message\",\n                label: \"💻 ข่าวเทคโนโลยี\",\n                text: \"ข่าวเทคโนโลยี\"\n              }\n            }\n          ]\n        }\n      }\n    }\n  ]\n})\n}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -2368,
+        1280
+      ],
+      "id": "7d50876d-e535-4238-8b44-408425ef9e59",
+      "name": "HTTP Request ทักทาย1"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "daysInterval": 2,
+              "triggerAtHour": 9
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -3040,
+        1280
+      ],
+      "id": "fb3ba644-5ca1-4fd3-824d-dac360e65b40",
+      "name": "Schedule Trigger ทุก 2 วัน"
+    },
+    {
+      "parameters": {
+        "jsCode": "const seen = new Set();\nreturn $input.all().filter(item => {\n  const userId = item.json.User_ID;\n  // เช็กว่ามีค่า, ขึ้นต้นด้วยตัว U และยังไม่เคยส่งซ้ำ\n  if (!userId || !userId.startsWith('U') || userId === 'admin' || seen.has(userId)) {\n    return false;\n  }\n  seen.add(userId);\n  return true;\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2592,
+        1280
+      ],
+      "id": "fa89aefa-195c-4417-b491-2a269d4b9d95",
+      "name": "Code in JavaScript2"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.line.me/v2/bot/message/push",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 9iojeVBvGzT4kLWyJVQGU6lNBzVp1YpIruPGDIK/aRufvb/kGXKbbJzY0eaPY2ehFjxYYDg5taaYUZh6k0GE77HcvZkWS1cRfFzzb4BlOjJfvorwfflbqsPs0Igw1oCYeEUghHK4YbMQqtw7BK+8QQdB04t89/1O/w1cDnyilFU="
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "=json",
+        "specifyBody": "json",
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "jsonBody": "={{\n(() => {\n  let raw = $json.output;\n  let parsed = {};\n\n  if (typeof raw === 'string') {\n    try {\n      parsed = JSON.parse(raw);\n    } catch (e) {\n      const match = raw.match(/\\{[\\s\\S]*\\}/);\n      if (match) {\n        try { parsed = JSON.parse(match[0]); } catch (err) {}\n      }\n    }\n  } else if (typeof raw === 'object' && raw !== null) {\n    parsed = raw;\n  }\n\n  // ปลดชั้นซ้อน กรณี AI ส่งโครงสร้าง { output: { ... } }\n  const data = parsed.output || parsed;\n  const execSummary = data.executive_summary || \"\";\n  const newsList = Array.isArray(data.news) ? data.news : [];\n  const decisionSummary = data.decision_summary || data.business_decision_summary || data.decision_support || \"\";\n\n  let messageText = \"🔔 อัปเดตข่าวด่วนรอบ 6 ชั่วโมง\\n\" + execSummary;\n\n  if (newsList.length > 0) {\n    messageText += \"\\n\\n\" + newsList.map((item, index) => \n      \"⚡ \" + (index + 1) + \". \" + (item.title || \"\") +\n      \"\\n- สาระสำคัญ:\\n\" + (item.summary || \"\") +\n      \"\\n- ที่มา: \" + (item.reference_url || item.link || \"\")\n    ).join(\"\\n\\n\");\n  }\n\n  if (decisionSummary) {\n    messageText += \"\\n\\n💡 สรุปเพื่อสนับสนุนการตัดสินใจทางธุรกิจ:\\n\" + decisionSummary;\n  }\n\n  return JSON.stringify({\n    \"to\": \"U9934a296a1e495b53dbaf2153fe91fd5\",\n    \"messages\": [\n      {\n        \"type\": \"text\",\n        \"text\": messageText\n      }\n    ]\n  });\n})()\n}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -800,
+        2960
+      ],
+      "id": "582523ac-4a70-4b35-aba9-94927d711e60",
+      "name": "HTTP Request9"
+    },
+    {
+      "parameters": {
+        "jsCode": "// 1. ดึง User ID ทั้งหมดจากโหนด Google Sheets (sheet3)\n// และคัดเฉพาะ LINE User ID ที่ถูกต้อง (ขึ้นต้นด้วย U และไม่มีค่าข้อความทั่วไปซ้ำ)\nconst rawUserIds = $(\"Get row(s) in sheet3\").all().map(item => item.json.User_ID || item.json.user_id).filter(Boolean);\n\nconst uniqueUserIds = [...new Set(rawUserIds)].filter(id => \n  typeof id === 'string' && id.trim().startsWith('U') && id.trim().length > 20\n);\n\n// 2. ถอดรหัสและเตรียมข้อมูลเนื้อหาข่าวจาก AI\nlet raw = $json.output;\nlet parsed = {};\n\nif (typeof raw === 'string') {\n  try {\n    parsed = JSON.parse(raw);\n  } catch (e) {\n    const match = raw.match(/\\{[\\s\\S]*\\}/);\n    if (match) {\n      try { parsed = JSON.parse(match[0]); } catch (err) {}\n    }\n  }\n} else if (typeof raw === 'object' && raw !== null) {\n  parsed = raw;\n}\n\n// ปลดชั้นซ้อน กรณี AI ส่งโครงสร้าง { output: { ... } }\nconst data = parsed.output || parsed;\nconst execSummary = data.executive_summary || \"\";\nconst newsList = Array.isArray(data.news) ? data.news : [];\nconst decisionSummary = data.decision_summary || data.business_decision_summary || data.decision_support || \"\";\n\n// 3. จัดข้อความแจ้งเตือน\nlet messageText = \"🔔 อัปเดตข่าวด่วนรอบ 6 ชั่วโมง\\n\" + execSummary;\n\nif (newsList.length > 0) {\n  messageText += \"\\n\\n\" + newsList.map((item, index) => \n    \"⚡ \" + (index + 1) + \". \" + (item.title || \"\") +\n    \"\\n- สาระสำคัญ:\\n\" + (item.summary || \"\") +\n    \"\\n- ที่มา: \" + (item.reference_url || item.link || \"\")\n  ).join(\"\\n\\n\");\n}\n\nif (decisionSummary) {\n  messageText += \"\\n\\n💡 สรุปเพื่อสนับสนุนการตัดสินใจทางธุรกิจ:\\n\" + decisionSummary;\n}\n\n// 4. ส่งออกข้อมูลเชิงโครงสร้าง Object สำหรับโหนด HTTP Request\nreturn {\n  json: {\n    \"to\": uniqueUserIds,\n    \"messages\": [\n      {\n        \"type\": \"text\",\n        \"text\": messageText\n      }\n    ]\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -928,
+        2352
+      ],
+      "id": "e0061b65-bdaf-4846-a028-480849243955",
+      "name": "Code in JavaScript3"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1QdJSTvuwZbynDulibau8KhgLmM_W5dNT4qkx8tRlbBM",
+          "mode": "list",
+          "cachedResultName": "n8n_news",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QdJSTvuwZbynDulibau8KhgLmM_W5dNT4qkx8tRlbBM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1370188854,
+          "mode": "list",
+          "cachedResultName": "n8n_news",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QdJSTvuwZbynDulibau8KhgLmM_W5dNT4qkx8tRlbBM/edit#gid=1370188854"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -4400,
+        1632
+      ],
+      "id": "345a5762-9ffc-4d50-9923-e4155ba6eef0",
+      "name": "Get row(s) in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "DjYSEhpYMwiJHaIJ",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        -2656,
+        1760
+      ],
+      "id": "73892efd-92cc-4a79-98cb-40ec09cd9817",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "jsCode": "// 1. ดึงประวัติ URL ทั้งหมดจากชีต\nconst sheetRows = $('Get row(s) in sheet1').all();\nconst usedUrls = sheetRows.map(r => r.json.Source_URLs).filter(Boolean);\n\n// 2. ดึงข่าวใหม่รอบนี้ทั้งหมดที่ดึงมาจาก RSS\nconst incomingNews = $input.all();\n\n// 3. กรองเอาเฉพาะข่าวที่ URL ไม่เคยอยู่ในชีต\nconst freshNews = incomingNews.filter(item => {\n  const currentLink = item.json.link;\n  return !usedUrls.some(usedUrl => usedUrl.includes(currentLink));\n});\n\n// ส่งเฉพาะข่าวใหม่ไปให้ AI สรุป (ถ้ากรองแล้วหมด ให้ส่งสำรองไป)\nreturn freshNews.length > 0 ? freshNews : incomingNews.slice(0, 3);"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -3472,
+        2096
+      ],
+      "id": "fd098d89-df3d-43c7-a403-b6117a38cb0e",
+      "name": "Code in JavaScript4"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1QdJSTvuwZbynDulibau8KhgLmM_W5dNT4qkx8tRlbBM",
+          "mode": "list",
+          "cachedResultName": "n8n_news",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QdJSTvuwZbynDulibau8KhgLmM_W5dNT4qkx8tRlbBM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1370188854,
+          "mode": "list",
+          "cachedResultName": "n8n_news",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QdJSTvuwZbynDulibau8KhgLmM_W5dNT4qkx8tRlbBM/edit#gid=1370188854"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Log_ID": "={{ $execution.id }}",
+            "User_ID": "={{ $('Webhook').item.json.body.events[0].source.userId }}",
+            "Topic_Query": "={{ $('Webhook').item.json.body.events[0].message.text }}",
+            "Timestamp": "={{ $now.setZone('Asia/Bangkok').toFormat('yyyy-MM-dd HH:mm:ss') }}",
+            "Summary_Result": "={{\n  ($('AI Agent1').item.json.output.news || []).map((item, index) => \n    `📌 Title ${index + 1}: ${item.title}\\n📝 ${item.summary}`\n  ).join('\\n\\n')\n}}",
+            "Status": "=Success",
+            "Source_URLs": "={{ $('AI Agent1').item.json.output.news.map(n => n.reference_url).join(', ') }}",
+            "Decision_Summary": "={{ $('AI Agent1').item.json.output.decision_summary || '' }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Log_ID",
+              "displayName": "Log_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "User_ID",
+              "displayName": "User_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Topic_Query",
+              "displayName": "Topic_Query",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Timestamp",
+              "displayName": "Timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Summary_Result",
+              "displayName": "Summary_Result",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Source_URLs",
+              "displayName": "Source_URLs",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Decision_Summary",
+              "displayName": "Decision_Summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -1728,
+        2032
+      ],
+      "id": "375fb050-13ad-4277-8f43-bc7462b30963",
+      "name": "Append row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "DjYSEhpYMwiJHaIJ",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1QdJSTvuwZbynDulibau8KhgLmM_W5dNT4qkx8tRlbBM",
+          "mode": "list",
+          "cachedResultName": "n8n_news",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QdJSTvuwZbynDulibau8KhgLmM_W5dNT4qkx8tRlbBM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1370188854,
+          "mode": "list",
+          "cachedResultName": "n8n_news",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QdJSTvuwZbynDulibau8KhgLmM_W5dNT4qkx8tRlbBM/edit#gid=1370188854"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Log_ID": "={{ $execution.id }}",
+            "User_ID": "={{ $('Webhook').item.json.body.events[0].source.userId }}",
+            "Topic_Query": "={{ $('Webhook').item.json.body.events[0].message.text }}",
+            "Timestamp": "={{ $now.setZone('Asia/Bangkok').toFormat('yyyy-MM-dd HH:mm:ss') }}",
+            "Summary_Result": "={{ $('AI Agent2').item.json.output }}",
+            "Status": "=Success",
+            "Source_URLs": "={{ (JSON.stringify($('AI Agent2').item.json.output).match(/https?:\\/\\/[^\\s\\\\\"']+/) || []).join(', ') }}",
+            "Decision_Summary": "={{ $('AI Agent2').item.json.output.decision_summary || '' }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Log_ID",
+              "displayName": "Log_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "User_ID",
+              "displayName": "User_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Topic_Query",
+              "displayName": "Topic_Query",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Timestamp",
+              "displayName": "Timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Summary_Result",
+              "displayName": "Summary_Result",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Source_URLs",
+              "displayName": "Source_URLs",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Decision_Summary",
+              "displayName": "Decision_Summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -3168,
+        2640
+      ],
+      "id": "4766e086-294f-4349-bea5-6246ac2206e6",
+      "name": "Append row in sheet4",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "DjYSEhpYMwiJHaIJ",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.line.me/v2/bot/message/reply",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 9iojeVBvGzT4kLWyJVQGU6lNBzVp1YpIruPGDIK/aRufvb/kGXKbbJzY0eaPY2ehFjxYYDg5taaYUZh6k0GE77HcvZkWS1cRfFzzb4BlOjJfvorwfflbqsPs0Igw1oCYeEUghHK4YbMQqtw7BK+8QQdB04t89/1O/w1cDnyilFU="
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "=json",
+        "specifyBody": "json",
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "jsonBody": "={{\n(() => {\n  // ดึงข้อมูลจาก AI Agent\n  let data = $json.output;\n\n  // แปลง String เป็น Object กรณี AI ส่งผลลัพธ์เป็น JSON String\n  if (typeof data === 'string') {\n    try {\n      data = JSON.parse(data);\n    } catch (e) {\n      data = {};\n    }\n  }\n\n  if (data && data.output && typeof data.output === 'object') {\n    data = data.output;\n  }\n\n  // ดึงค่าภาพรวม ข่าวสาร และบทสรุปเชิงธุรกิจจาก AI โดยตรง\n  const overview = data?.overview || data?.executive_summary || \"ภาพรวมข่าวสารสำคัญในรอบวัน\";\n  const newsList = Array.isArray(data?.news) ? data.news : (Array.isArray(data?.topics) ? data.topics : []);\n  const decisionSummary = data?.decision_summary || data?.business_impact || data?.business_decision_summary || null;\n\n  const userQuery = $('Webhook').item?.json?.body?.events?.[0]?.message?.text || \"ข่าวประจำวัน\";\n  const token = $('Webhook').item?.json?.body?.events?.[0]?.replyToken || \"\";\n\n  // ประกอบกล่องเนื้อหา Body\n  const bodyContents = [\n    {\n      type: \"box\",\n      layout: \"vertical\",\n      backgroundColor: \"#F1F5F9\",\n      paddingAll: \"md\",\n      cornerRadius: \"md\",\n      contents: [\n        {\n          type: \"text\",\n          text: \"🔹 ภาพรวมประจำวัน\",\n          weight: \"bold\",\n          size: \"xs\",\n          color: \"#334155\"\n        },\n        {\n          type: \"text\",\n          text: overview,\n          size: \"xs\",\n          color: \"#475569\",\n          wrap: true,\n          margin: \"xs\"\n        }\n      ]\n    },\n    {\n      type: \"separator\"\n    },\n    ...newsList.slice(0, 3).map((item, index) => {\n      return {\n        type: \"box\",\n        layout: \"vertical\",\n        spacing: \"xs\",\n        margin: \"sm\",\n        contents: [\n          {\n            type: \"text\",\n            text: `${index + 1}. ${item.title || 'หัวข้อข่าว'}`,\n            weight: \"bold\",\n            size: \"sm\",\n            color: \"#0F172A\",\n            wrap: true\n          },\n          {\n            type: \"text\",\n            text: item.summary || item.description || \"ไม่มีเนื้อหาโดยย่อ\",\n            size: \"xs\",\n            color: \"#64748B\",\n            wrap: true\n          },\n          {\n            type: \"button\",\n            style: \"link\",\n            height: \"sm\",\n            action: {\n              type: \"uri\",\n              label: \"🔗 อ่านต่อฉบับเต็ม\",\n              uri: (item.link || item.reference_url || \"https://news.google.com\").substring(0, 990)\n            }\n          }\n        ]\n      };\n    })\n  ];\n\n  // ถ้า AI ส่ง decision_summary มา ให้ต่อกล่องสีฟ้าท้ายการ์ด\n  if (decisionSummary) {\n    bodyContents.push(\n      {\n        type: \"separator\",\n        margin: \"md\"\n      },\n      {\n        type: \"box\",\n        layout: \"vertical\",\n        backgroundColor: \"#EFF6FF\",\n        paddingAll: \"md\",\n        cornerRadius: \"md\",\n        margin: \"sm\",\n        contents: [\n          {\n            type: \"text\",\n            text: \"💡 สรุปเพื่อสนับสนุนการตัดสินใจทางธุรกิจ\",\n            weight: \"bold\",\n            size: \"xs\",\n            color: \"#1D4ED8\"\n          },\n          {\n            type: \"text\",\n            text: decisionSummary,\n            size: \"xs\",\n            color: \"#1E293B\",\n            wrap: true,\n            margin: \"xs\"\n          }\n        ]\n      }\n    );\n  }\n\n  return JSON.stringify({\n    replyToken: token,\n    messages: [\n      {\n        type: \"flex\",\n        altText: \"สรุปข่าวสำคัญประจำวัน\",\n        contents: {\n          type: \"bubble\",\n          header: {\n            type: \"box\",\n            layout: \"vertical\",\n            backgroundColor: \"#0F172A\",\n            paddingAll: \"lg\",\n            contents: [\n              {\n                type: \"text\",\n                text: \"📊 DAILY NEWS BRIEF\",\n                weight: \"bold\",\n                color: \"#38BDF8\",\n                size: \"xs\"\n              },\n              {\n                type: \"text\",\n                text: \"สรุป\" + userQuery,\n                weight: \"bold\",\n                color: \"#FFFFFF\",\n                size: \"lg\",\n                margin: \"xs\"\n              }\n            ]\n          },\n          body: {\n            type: \"box\",\n            layout: \"vertical\",\n            spacing: \"md\",\n            contents: bodyContents\n          }\n        }\n      }\n    ]\n  });\n})()\n}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -2016,
+        1600
+      ],
+      "id": "1bb1f296-6ec8-4fc4-b627-3f1d87de3926",
+      "name": "HTTP Request10"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.line.me/v2/bot/message/reply",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 9iojeVBvGzT4kLWyJVQGU6lNBzVp1YpIruPGDIK/aRufvb/kGXKbbJzY0eaPY2ehFjxYYDg5taaYUZh6k0GE77HcvZkWS1cRfFzzb4BlOjJfvorwfflbqsPs0Igw1oCYeEUghHK4YbMQqtw7BK+8QQdB04t89/1O/w1cDnyilFU="
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "=json",
+        "specifyBody": "json",
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "jsonBody": "={{\n(() => {\n  let raw = $json.output;\n  let parsedData = null;\n\n  // 1. ดึงและคลายก้อน JSON ที่ซ่อนอยู่ในสตริง\n  if (typeof raw === 'string') {\n    const jsonStartIndex = raw.indexOf('{');\n    if (jsonStartIndex !== -1) {\n      try {\n        parsedData = JSON.parse(raw.substring(jsonStartIndex));\n      } catch (e) {\n        const match = raw.match(/\\{[\\s\\S]*\\}/);\n        if (match) {\n          try { parsedData = JSON.parse(match[0]); } catch (err) {}\n        }\n      }\n    }\n  } else if (typeof raw === 'object') {\n    parsedData = raw;\n  }\n\n  // ปลดชั้น output\n  if (parsedData && parsedData.output) {\n    parsedData = parsedData.output;\n  }\n\n  let overview = \"สรุปประเด็นข่าวสารสำคัญล่าสุด\";\n  let decisionSummary = \"\";\n  let newsList = [];\n\n  // 2. ดึงรายการข่าว\n  if (parsedData && typeof parsedData === 'object') {\n    overview = parsedData.executive_summary || parsedData.overview || parsedData.summary || overview;\n    decisionSummary = parsedData.decision_summary || \"\";\n    const rawNews = parsedData.news || parsedData.topics || parsedData.news_items || [];\n    if (Array.isArray(rawNews)) {\n      newsList = rawNews.slice(0, 3).map((item, idx) => ({\n        title: item.title || `ข่าวที่ ${idx + 1}`,\n        summary: item.summary || item.business_impact_summary || item.description || '',\n        url: item.reference_url || item.source_url || item.link || item.url || null\n      }));\n    }\n  }\n\n  // ฟังก์ชันทำความสะอาดข้อความ\n  const clean = (str) => (str ? String(str).replace(/\\\\\"/g, '\"').replace(/\\\\n/g, ' ').trim() : '');\n  const userText = $('Webhook').item?.json?.body?.events?.[0]?.message?.text || \"ข่าวประจำวัน\";\n\n  // ฟังก์ชันตรวจสอบและจำกัดความยาว URL ไม่ให้เกิน 990 ตัวอักษร\n  const sanitizeUrl = (urlStr) => {\n    if (!urlStr || typeof urlStr !== 'string') return null;\n    let url = clean(urlStr);\n    if (!url.startsWith('http://') && !url.startsWith('https://')) return null;\n    return url.length > 990 ? url.substring(0, 990) : url;\n  };\n\n  // 3. สร้าง Components ข่าวสำหรับ Flex Message\n  const newsContents = [];\n\n  newsList.forEach((item, index) => {\n    const singleNews = [\n      {\n        type: \"text\",\n        text: `${index + 1}. ${clean(item.title)}`,\n        weight: \"bold\",\n        size: \"sm\",\n        color: \"#0F172A\",\n        wrap: true\n      }\n    ];\n\n    if (item.summary) {\n      singleNews.push({\n        type: \"text\",\n        text: clean(item.summary),\n        size: \"xs\",\n        color: \"#64748B\",\n        wrap: true,\n        margin: \"xs\"\n      });\n    }\n\n    const safeUrl = sanitizeUrl(item.url);\n    if (safeUrl) {\n      singleNews.push({\n        type: \"button\",\n        style: \"link\",\n        height: \"sm\",\n        margin: \"xs\",\n        action: {\n          type: \"uri\",\n          label: \"🔗 อ่านต่อฉบับเต็ม\",\n          uri: safeUrl\n        }\n      });\n    }\n\n    newsContents.push({\n      type: \"box\",\n      layout: \"vertical\",\n      spacing: \"none\",\n      margin: index === 0 ? \"none\" : \"lg\",\n      contents: singleNews\n    });\n\n    if (index < newsList.length - 1) {\n      newsContents.push({\n        type: \"separator\",\n        margin: \"lg\",\n        color: \"#E2E8F0\"\n      });\n    }\n  });\n\n  // 4. ส่งกลับ LINE Payload\n  return JSON.stringify({\n    replyToken: $('Webhook').item.json.body.events[0].replyToken,\n    messages: [\n      {\n        type: \"flex\",\n        altText: `สรุป${userText}`,\n        contents: {\n          type: \"bubble\",\n          size: \"mega\",\n          header: {\n            type: \"box\",\n            layout: \"vertical\",\n            backgroundColor: \"#0B132B\",\n            paddingAll: \"lg\",\n            contents: [\n              {\n                type: \"text\",\n                text: \"📊 DAILY NEWS BRIEF\",\n                weight: \"bold\",\n                color: \"#38BDF8\",\n                size: \"xs\"\n              },\n              {\n                type: \"text\",\n                text: userText.startsWith('สรุป') ? userText : `สรุป${userText}`,\n                weight: \"bold\",\n                color: \"#FFFFFF\",\n                size: \"lg\",\n                margin: \"xs\",\n                wrap: true\n              }\n            ]\n          },\n          body: {\n            type: \"box\",\n            layout: \"vertical\",\n            paddingAll: \"lg\",\n            contents: [\n              {\n                type: \"box\",\n                layout: \"vertical\",\n                backgroundColor: \"#F1F5F9\",\n                paddingAll: \"md\",\n                cornerRadius: \"md\",\n                contents: [\n                  {\n                    type: \"text\",\n                    text: \"🔹 ภาพรวมประจำวัน\",\n                    weight: \"bold\",\n                    size: \"xs\",\n                    color: \"#0284C7\"\n                  },\n                  {\n                    type: \"text\",\n                    text: clean(overview),\n                    size: \"xs\",\n                    color: \"#334155\",\n                    wrap: true,\n                    margin: \"xs\"\n                  },\n                  ...(decisionSummary ? [\n                    {\n                      type: \"text\",\n                      text: \"💡 ข้อเสนอแนะเชิงธุรกิจ\",\n                      weight: \"bold\",\n                      size: \"xs\",\n                      color: \"#D97706\",\n                      margin: \"md\"\n                    },\n                    {\n                      type: \"text\",\n                      text: clean(decisionSummary),\n                      size: \"xs\",\n                      color: \"#334155\",\n                      wrap: true,\n                      margin: \"xs\"\n                    }\n                  ] : [])\n                ]\n              },\n              {\n                type: \"separator\",\n                margin: \"lg\",\n                color: \"#E2E8F0\"\n              },\n              ...(newsContents.length > 0 ? newsContents : [\n                {\n                  type: \"text\",\n                  text: \"ไม่พบข้อมูลข่าวที่ตรงกับเงื่อนไข\",\n                  size: \"xs\",\n                  color: \"#64748B\",\n                  wrap: true\n                }\n              ])\n            ]\n          }\n        }\n      }\n    ]\n  });\n})()\n}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -3312,
+        2208
+      ],
+      "id": "6c100351-74f0-44d4-b3b0-c798adef6418",
+      "name": "HTTP Request11"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.line.me/v2/bot/message/multicast",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 9iojeVBvGzT4kLWyJVQGU6lNBzVp1YpIruPGDIK/aRufvb/kGXKbbJzY0eaPY2ehFjxYYDg5taaYUZh6k0GE77HcvZkWS1cRfFzzb4BlOjJfvorwfflbqsPs0Igw1oCYeEUghHK4YbMQqtw7BK+8QQdB04t89/1O/w1cDnyilFU="
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "=json",
+        "specifyBody": "json",
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "jsonBody": "={{ JSON.stringify($json) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -736,
+        2208
+      ],
+      "id": "319602e6-5d00-4b19-9df2-1086815e8a89",
+      "name": "HTTP Request12"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.line.me/v2/bot/message/push",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 9iojeVBvGzT4kLWyJVQGU6lNBzVp1YpIruPGDIK/aRufvb/kGXKbbJzY0eaPY2ehFjxYYDg5taaYUZh6k0GE77HcvZkWS1cRfFzzb4BlOjJfvorwfflbqsPs0Igw1oCYeEUghHK4YbMQqtw7BK+8QQdB04t89/1O/w1cDnyilFU="
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{\nJSON.stringify({\n  to: $json.User_ID,\n  messages: [\n    {\n      type: \"text\",\n      text: \"สวัสดีครับ! วันนี้มีข่าวสารและประเด็นธุรกิจที่น่าสนใจอัปเดตใหม่ 📊\\n\\nท่านสามารถกดเลือกดูหมวดหมู่ข่าวสารที่ต้องการอ่านสรุปผ่านปุ่มด้านล่างนี้ได้เลยนะครับ 👇\"\n    },\n    {\n      type: \"flex\",\n      altText: \"เลือกดูสรุปข่าวประจำวัน\",\n      contents: {\n        type: \"bubble\",\n        header: {\n          type: \"box\",\n          layout: \"vertical\",\n          backgroundColor: \"#0F172A\",\n          paddingAll: \"lg\",\n          contents: [\n            {\n              type: \"text\",\n              text: \"📰 AI News Assistant\",\n              weight: \"bold\",\n              color: \"#38BDF8\",\n              size: \"md\"\n            },\n            {\n              type: \"text\",\n              text: \"เลือกหมวดหมู่ข่าวที่ต้องการอ่านสรุป:\",\n              color: \"#FFFFFF\",\n              size: \"xs\",\n              margin: \"xs\"\n            }\n          ]\n        },\n        body: {\n          type: \"box\",\n          layout: \"vertical\",\n          spacing: \"sm\",\n          contents: [\n            {\n              type: \"button\",\n              style: \"primary\",\n              color: \"#EF4444\",\n              height: \"sm\",\n              action: {\n                type: \"message\",\n                label: \"🏛️ ข่าวการเมือง\",\n                text: \"ข่าวการเมือง\"\n              }\n            },\n            {\n              type: \"button\",\n              style: \"primary\",\n              color: \"#F59E0B\",\n              height: \"sm\",\n              action: {\n                type: \"message\",\n                label: \"💼 ข่าวเศรษฐกิจ\",\n                text: \"ข่าวเศรษฐกิจ\"\n              }\n            },\n            {\n              type: \"button\",\n              style: \"primary\",\n              color: \"#3B82F6\",\n              height: \"sm\",\n              action: {\n                type: \"message\",\n                label: \"💻 ข่าวเทคโนโลยี\",\n                text: \"ข่าวเทคโนโลยี\"\n              }\n            }\n          ]\n        }\n      }\n    }\n  ]\n})\n}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -2160,
+        1136
+      ],
+      "id": "aa856f6e-0f36-48f8-91fe-5308e39cb95a",
+      "name": "HTTP Request ทักทาย2"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Function ทำความสะอาด URL (ตัด parameter พ่วงท้าย เช่น ?utm_source... ออก)\nfunction cleanUrl(url) {\n  if (!url) return '';\n  // ตัด ? และ # ออก แปลงเป็นตัวพิมพ์เล็ก\n  return String(url).trim().split('?')[0].split('#')[0].toLowerCase();\n}\n\n// 1. ดึงประวัติลิงก์เดิมจากโหนด Get row(s) in sheet1\nconst sheetRows = $('Get row(s) in sheet1').all();\nconst usedUrlsSet = new Set();\n\nsheetRows.forEach(row => {\n  // ดึงค่าจากคอลัมน์ Source_URLs ใน Google Sheets\n  const urlData = row.json.Source_URLs || row.json.link || \"\";\n  if (urlData) {\n    // แยกกรณีในชีตเก็บหลาย URL คั่นด้วยเครื่องหมาย ,\n    String(urlData).split(',').forEach(u => {\n      const cleaned = cleanUrl(u);\n      if (cleaned) usedUrlsSet.add(cleaned);\n    });\n  }\n});\n\n// 2. ดึงข่าวใหม่ที่เข้ามาในรอบนี้จาก RSS\nconst incomingNews = $input.all();\nconst freshNews = [];\n\nfor (const item of incomingNews) {\n  const currentRawLink = item.json.link || item.json.url || \"\";\n  const cleanedCurrentLink = cleanUrl(currentRawLink);\n\n  // ตรวจสอบว่าลิงก์นี้ไม่อยู่ในประวัติเดิมของ Google Sheets\n  if (cleanedCurrentLink && !usedUrlsSet.has(cleanedCurrentLink)) {\n    freshNews.push(item);\n    // บันทึกลง Set ทันที เพื่อป้องกันข่าวซ้ำกันเองภายในรอบเดียวกัน\n    usedUrlsSet.add(cleanedCurrentLink);\n  }\n}\n\n// 3. ส่งเฉพาะข่าวที่ไม่เคยมีประวัติในชีตออกไป\nreturn freshNews;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -3120,
+        1888
+      ],
+      "id": "39c7c21b-c845-49b8-a57d-f0648a767aee",
+      "name": "Code in JavaScript5"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "มติชน1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "ข่าวสด1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "google1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "investing",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Google News",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "prachachat",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "blognone",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "techsauce",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "google",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Limit1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "มติชน1": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "ข่าวสด1": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "investing": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google News": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "prachachat": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "blognone": {
+      "main": [
+        [
+          {
+            "node": "Merge3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "techsauce": {
+      "main": [
+        [
+          {
+            "node": "Merge3",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "google": {
+      "main": [
+        [
+          {
+            "node": "Merge3",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search in Tavily1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Structured Output Parser1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge2": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge3": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "google1": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search in Tavily2": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Structured Output Parser2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser2": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate3": {
+      "main": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger3": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "google2": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory2": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent3",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate4": {
+      "main": [
+        [
+          {
+            "node": "AI Agent3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search in Tavily3": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent3",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent3",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Structured Output Parser3",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser3": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent3",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent3": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request4": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "Limit2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet3": {
+      "main": [
+        [
+          {
+            "node": "google2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit2": {
+      "main": [
+        [
+          {
+            "node": "Aggregate4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request ทักทาย",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger ทุก 2 วัน": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request ทักทาย1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript3": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "c071368f-0eb2-453e-9c5b-aa90f6c71f87",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "18249a566e085a3eef8e1c514922b7afc7870ef80402267507697d6240f9c5a8"
+  },
+  "nodeGroups": [],
+  "id": "gZzASoQyWpQf6H6N",
+  "tags": []
+}
